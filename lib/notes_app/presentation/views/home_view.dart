@@ -1,62 +1,47 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_app/notes_app/presentation/widgets/note_item.dart' hide Colors;
+import 'package:to_do_app/notes_app/data/models/note_model.dart';
+import 'package:to_do_app/notes_app/presentation/widgets/note_item.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
-
   @override
   Widget build(BuildContext context) {
-    final List<Color> noteColors = [
-       Color(mapColor(0xFFFFF9C4)), 
-       Color(mapColor(0xFFFFCCBC)), 
-       Color(mapColor(0xFFE1BEE7)), 
-       Color(mapColor(0xFFC8E6C9)), 
-       Color(mapColor(0xB3E5FCFF)), 
-    ];
-
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        backgroundColor: Colors.amber.shade700,
-        child: const Icon(Icons.add, color: Colors.white),
-      ),
-      body: CustomScrollView(
-        slivers: [
-          const SliverAppBar(
-            pinned: true,
-            floating: true,
-            title: Text(
-              "My Notes", 
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-            ),
-            actions: [
-              IconButton(onPressed: _dummyAction, icon: Icon(Icons.search)),
-            ],
-          ),
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            sliver: SliverGrid(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, 
-                mainAxisSpacing: 12,
-                crossAxisSpacing: 12,
-                childAspectRatio: 0.85, 
+    return SafeArea(
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: Colors.amber.shade700,
+          child: const Icon(Icons.add, color: Colors.white),
+        ),
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              backgroundColor: Color.fromARGB(255, 255, 219, 196),
+              pinned: true,
+              title: Text(
+                "My Notes",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
               ),
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  return NoteItem(
-                    cardColor: noteColors[index % noteColors.length],
-                  );
-                },
-                childCount: 9,
+              actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search_sharp ,size: 30,))],
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              sliver: SliverList.separated(
+                itemCount: 10,
+                itemBuilder: (context , index) => NoteItem(
+                    cardColor: NoteModel.noteColors[0],
+                    noteModel: NoteModel(
+                      title: "Flutter Tips & tricks",
+                      subTitle: "build your career & brain with our lord jesus.",
+                      date: "2004/1/20",
+                    ),
+                  ),
+                separatorBuilder: (context ,index)=> const SizedBox(height: 20,),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
-
-int mapColor(int value) => value;
-void _dummyAction() {}
