@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_app/notes_app/presentation/views/home_view.dart';
+import 'package:to_do_app/notes_app/presentation/views/notes_view.dart';
 
 class NotesApp extends StatelessWidget {
   const NotesApp({super.key});
@@ -7,7 +7,7 @@ class NotesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomeView(),
+      home: NotesView(),
     );
   }
 }

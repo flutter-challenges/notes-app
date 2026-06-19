@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+import 'package:to_do_app/notes_app/presentation/widgets/custom_app_bar.dart';
+import 'package:to_do_app/notes_app/presentation/widgets/notes_list.dart';
+
+class NotesView extends StatelessWidget {
+  const NotesView({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {},
+          backgroundColor: Colors.amber.shade700,
+          child: const Icon(Icons.add, color: Colors.white),
+        ),
+        body: CustomScrollView(
+          slivers: [
+            CustomAppBar(),
+            SliverPadding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              sliver: NotesList(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
