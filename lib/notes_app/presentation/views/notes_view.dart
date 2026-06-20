@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/notes_app/presentation/widgets/custom_app_bar.dart';
+import 'package:to_do_app/notes_app/presentation/widgets/custom_floating_action_button.dart';
 import 'package:to_do_app/notes_app/presentation/widgets/notes_list.dart';
 
 class NotesView extends StatelessWidget {
@@ -9,11 +10,7 @@ class NotesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {},
-          backgroundColor: Colors.amber.shade700,
-          child: const Icon(Icons.add, color: Colors.white),
-        ),
+        floatingActionButton: CustomFloatingActionButton(),
         body: CustomScrollView(
           slivers: [
             CustomAppBar(),
@@ -27,5 +24,6 @@ class NotesView extends StatelessWidget {
     );
   }
 }
+
 
 
