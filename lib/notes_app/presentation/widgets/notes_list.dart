@@ -14,6 +14,7 @@ class NotesList extends StatelessWidget {
       itemBuilder: (context, index) => NoteItem(
         cardColor: NoteModel.noteColors[0],
         noteModel: NoteModel(
+          color: 5,
           title: "Flutter Tips & tricks",
           subTitle: "build your career & brain with our lord jesus.",
           date: "2004/1/20",
