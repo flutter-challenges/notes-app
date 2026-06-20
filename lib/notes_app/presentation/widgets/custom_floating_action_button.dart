@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_app/notes_app/presentation/views/add_note_view.dart';
+import 'package:to_do_app/core/helpers/extension.dart';
+import 'package:to_do_app/core/routing/routes.dart';
 
 class CustomFloatingActionButton extends StatelessWidget {
   const CustomFloatingActionButton({super.key});
@@ -13,10 +14,7 @@ class CustomFloatingActionButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const AddNoteView()),
-        );
+        context.pushNamed(AppRoutes.addNoteView);
       },
       child: const Icon(Icons.add, color: Colors.white, size: 28),
     );
