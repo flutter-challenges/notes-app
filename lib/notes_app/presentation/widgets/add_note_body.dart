@@ -2,30 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:to_do_app/notes_app/presentation/widgets/custom_note_text_field.dart';
 import 'package:to_do_app/notes_app/presentation/widgets/media_action_button.dart';
 
-class AddNoteBody extends StatefulWidget {
-  const AddNoteBody({super.key});
+class AddNoteBody extends StatelessWidget {
+  // 🔥 استقبال الـ Controllers كـ Parameters
+  final TextEditingController titleController;
+  final TextEditingController desController;
 
-  @override
-  State<AddNoteBody> createState() => _AddNoteBodyState();
-}
-
-class _AddNoteBodyState extends State<AddNoteBody> {
-  late TextEditingController _titleController;
-  late TextEditingController _desController;
-
-  @override
-  void initState() {
-    _titleController = TextEditingController();
-    _desController = TextEditingController();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _titleController.dispose();
-    _desController.dispose();
-    super.dispose();
-  }
+  const AddNoteBody({
+    super.key,
+    required this.titleController,
+    required this.desController,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -38,14 +24,14 @@ class _AddNoteBodyState extends State<AddNoteBody> {
             child: Column(
               children: [
                 CustomNoteTextField(
-                  controller: _titleController,
+                  controller: titleController,
                   hintAr: "عنوان الملاحظة...",
                   hintEn: "Note Title...",
                 ),
                 const SizedBox(height: 16),
 
                 CustomNoteTextField(
-                  controller: _desController,
+                  controller: desController,
                   maxLines: 20,
                   hintAr: "اكتب تفاصيل ملاحظتك هنا...",
                   hintEn: "Write your note details here...",
@@ -55,6 +41,7 @@ class _AddNoteBodyState extends State<AddNoteBody> {
           ),
         ),
 
+        // بار الـ Actions السفلي كما هو
         Container(
           padding: EdgeInsets.only(
             left: 16,
@@ -78,10 +65,7 @@ class _AddNoteBodyState extends State<AddNoteBody> {
             children: [
               const Text(
                 "إضافة إلى الملاحظة:",
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontWeight: FontWeight.w500,
-                ),
+                style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w500),
               ),
               const Spacer(),
 
