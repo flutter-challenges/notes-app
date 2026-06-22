@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_app/core/routing/routes.dart';
 import 'package:to_do_app/notes_app/data/models/note_model.dart';
+import 'package:to_do_app/notes_app/managers/cubit/notes_cubit.dart';
 import 'package:to_do_app/notes_app/presentation/views/add_note_view.dart';
 import 'package:to_do_app/notes_app/presentation/views/edit_and_show_note_view.dart';
 import 'package:to_do_app/notes_app/presentation/views/notes_view.dart';
@@ -9,7 +11,10 @@ class AppRouter {
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     return switch (settings.name) {
       AppRoutes.noteView => MaterialPageRoute(
-        builder: (context) => const NotesView(),
+        builder: (context) => BlocProvider(
+          create: (context) => NotesCubit()..fetchAllNotes(),
+          child: const NotesView(),
+        ),
       ),
 
       AppRoutes.addNoteView => MaterialPageRoute(
