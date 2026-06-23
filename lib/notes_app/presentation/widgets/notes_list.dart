@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:to_do_app/notes_app/managers/cubit/notes_cubit.dart';
+import 'package:to_do_app/notes_app/managers/cubit/show_all_notes/notes_cubit.dart';
 import 'package:to_do_app/notes_app/presentation/widgets/note_item.dart';
 
 class NotesList extends StatelessWidget {
@@ -51,7 +51,6 @@ class NotesList extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final note = notes[index];
                     return NoteItem(
-                      cardColor: Color(note.color),
                       noteModel: note,
                     );
                   },

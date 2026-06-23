@@ -4,9 +4,8 @@ import 'package:to_do_app/core/routing/routes.dart';
 import 'package:to_do_app/notes_app/data/models/note_model.dart';
 
 class NoteItem extends StatelessWidget {
-  final Color cardColor;
   final NoteModel noteModel;
-  const NoteItem({super.key, required this.cardColor, required this.noteModel});
+  const NoteItem({super.key,  required this.noteModel});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +16,7 @@ class NoteItem extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
-          color: cardColor,
+          color: Color(noteModel.color),
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_app/core/helpers/extension.dart';
 import 'package:to_do_app/core/helpers/show_snack_bar_middel.dart';
+import 'package:to_do_app/notes_app/data/models/note_model.dart';
+import 'package:to_do_app/notes_app/managers/cubit/add_note/add_note_cubit.dart';
+import 'package:to_do_app/notes_app/managers/cubit/show_all_notes/notes_cubit.dart';
 import 'package:to_do_app/notes_app/presentation/widgets/add_note_body.dart';
 
 class AddNoteView extends StatefulWidget {
@@ -11,7 +15,6 @@ class AddNoteView extends StatefulWidget {
 }
 
 class _AddNoteViewState extends State<AddNoteView> {
-  bool _isSaving = false;
   late final TextEditingController _titleController;
   late final TextEditingController _desController;
 
@@ -29,8 +32,7 @@ class _AddNoteViewState extends State<AddNoteView> {
     super.dispose();
   }
 
-
-  void _validateAndSave() async {
+  void _validateAndSave(BuildContext context) {
     final String title = _titleController.text.trim();
     final String description = _desController.text.trim();
 
@@ -48,66 +50,91 @@ class _AddNoteViewState extends State<AddNoteView> {
       return;
     }
 
-    setState(() {
-      _isSaving = true;
-    });
+    final note = NoteModel(
+      title: title,
+      subTitle: description,
+      date: DateTime.now().toString().substring(0, 10),
+      color: NoteModel.noteColors[2].toARGB32(),
+    );
 
-    await Future.delayed(const Duration(milliseconds: 450));
-
-    if (!mounted) return;
-    context.pop();
+    context.read<AddNoteCubit>().addNote(note);
   }
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: const Color(0xFFF9F9F9),
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black87),
-            onPressed: () => context.pop(),
-          ),
-          title: const Text(
-            "ملاحظة جديدة",
-            style: TextStyle(
-              color: Colors.black87,
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
-          ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: IconButton(
-                onPressed: _isSaving ? null : _validateAndSave,
-                icon: AnimatedSwitcher(
-                  duration: const Duration(milliseconds: 200),
-                  child: _isSaving
-                      ? Icon(
-                          Icons.check_circle,
-                          color: Colors.green.shade600,
-                          size: 30,
-                          key: const ValueKey('saved'),
-                        )
-                      : Icon(
+    return BlocConsumer<AddNoteCubit, AddNoteState>(
+      listener: (context, state) {
+        if (state is AddNoteFailure) {
+          showMiddleSnackBar(state.errMessage, context);
+        }
+        if (state is AddNoteSuccess) {
+          context.read<NotesCubit>().fetchAllNotes();
+
+          context.pop();
+
+          showMiddleSnackBar("تمت إضافة الملاحظة بنجاح! 🎉", context);
+        }
+      },
+      builder: (context, state) {
+        return SafeArea(
+          child: Scaffold(
+            backgroundColor: const Color(0xFFF9F9F9),
+            appBar: AppBar(
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              leading: IconButton(
+                icon: const Icon(
+                  Icons.arrow_back_ios_new,
+                  color: Colors.black87,
+                ),
+                onPressed: () => context.pop(),
+              ),
+              title: const Text(
+                "ملاحظة جديدة",
+                style: TextStyle(
+                  color: Colors.black87,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: IconButton(
+                    onPressed: state is AddNoteLoading
+                        ? null
+                        : () => _validateAndSave(context),
+                    icon: AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 200),
+                      child: switch (state) {
+                        AddNoteLoading() => const SizedBox(
+                          key: ValueKey('loading'),
+                          height: 24,
+                          width: 24,
+                          child: CircularProgressIndicator(
+                            color: Colors.green,
+                            strokeWidth: 3,
+                          ),
+                        ),
+                        _ => Icon(
                           Icons.save_as_outlined,
                           color: Colors.amber.shade700,
                           size: 28,
                           key: const ValueKey('save'),
                         ),
+                      },
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
-        ),
-        body: AddNoteBody(
-          titleController: _titleController,
-          desController: _desController,
-        ),
-      ),
+            body: AddNoteBody(
+              titleController: _titleController,
+              desController: _desController,
+            ),
+          ),
+        );
+      },
     );
   }
 }

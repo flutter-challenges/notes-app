@@ -3,7 +3,6 @@ import 'package:to_do_app/notes_app/presentation/widgets/custom_note_text_field.
 import 'package:to_do_app/notes_app/presentation/widgets/media_action_button.dart';
 
 class AddNoteBody extends StatelessWidget {
-  // 🔥 استقبال الـ Controllers كـ Parameters
   final TextEditingController titleController;
   final TextEditingController desController;
 
@@ -41,7 +40,6 @@ class AddNoteBody extends StatelessWidget {
           ),
         ),
 
-        // بار الـ Actions السفلي كما هو
         Container(
           padding: EdgeInsets.only(
             left: 16,
