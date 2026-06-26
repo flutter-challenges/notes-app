@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_app/core/helpers/extension.dart';
 import 'package:to_do_app/core/helpers/show_snack_bar_middel.dart';
 import 'package:to_do_app/notes_app/data/models/note_model.dart';
-import 'package:to_do_app/notes_app/managers/cubit/add_note/add_note_cubit.dart';
+import 'package:to_do_app/notes_app/managers/cubit/bloc/add_note_bloc.dart';
 import 'package:to_do_app/notes_app/managers/cubit/show_all_notes/notes_cubit.dart';
 import 'package:to_do_app/notes_app/presentation/widgets/add_note_body.dart';
 
@@ -38,10 +38,7 @@ class _AddNoteViewState extends State<AddNoteView> {
 
     if (title.isEmpty || description.isEmpty) {
       if (title.isEmpty && description.isEmpty) {
-        showMiddleSnackBar(
-          "برجاء كتابة عنوان وتفاصيل الملاحظة أولاً!",
-          context,
-        );
+        showMiddleSnackBar("برجاء كتابة عنوان وتفاصيل الملاحظة أولاً!", context);
       } else if (title.isEmpty) {
         showMiddleSnackBar("برجاء كتابة عنوان الملاحظة!", context);
       } else {
@@ -57,21 +54,19 @@ class _AddNoteViewState extends State<AddNoteView> {
       color: NoteModel.noteColors[2].toARGB32(),
     );
 
-    context.read<AddNoteCubit>().addNote(note);
+    context.read<AddNoteBloc>().add(AddNoteSubmittedEvent(note));
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AddNoteCubit, AddNoteState>(
+    return BlocConsumer<AddNoteBloc, AddNoteState>(
       listener: (context, state) {
         if (state is AddNoteFailure) {
           showMiddleSnackBar(state.errMessage, context);
         }
         if (state is AddNoteSuccess) {
-          context.read<NotesCubit>().fetchAllNotes();
-
+          context.read<NotesCubit>().fetchAllNotes(); 
           context.pop();
-
           showMiddleSnackBar("تمت إضافة الملاحظة بنجاح! 🎉", context);
         }
       },
@@ -108,20 +103,20 @@ class _AddNoteViewState extends State<AddNoteView> {
                       duration: const Duration(milliseconds: 200),
                       child: switch (state) {
                         AddNoteLoading() => const SizedBox(
-                          key: ValueKey('loading'),
-                          height: 24,
-                          width: 24,
-                          child: CircularProgressIndicator(
-                            color: Colors.green,
-                            strokeWidth: 3,
+                            key: ValueKey('loading'),
+                            height: 24,
+                            width: 24,
+                            child: CircularProgressIndicator(
+                              color: Colors.green,
+                              strokeWidth: 3,
+                            ),
                           ),
-                        ),
                         _ => Icon(
-                          Icons.save_as_outlined,
-                          color: Colors.amber.shade700,
-                          size: 28,
-                          key: const ValueKey('save'),
-                        ),
+                            Icons.save_as_outlined,
+                            color: Colors.amber.shade700,
+                            size: 28,
+                            key: const ValueKey('save'),
+                          ),
                       },
                     ),
                   ),

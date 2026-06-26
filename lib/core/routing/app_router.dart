@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_app/core/routing/routes.dart';
 import 'package:to_do_app/notes_app/data/models/note_model.dart';
-import 'package:to_do_app/notes_app/managers/cubit/add_note/add_note_cubit.dart';
+import 'package:to_do_app/notes_app/managers/cubit/bloc/add_note_bloc.dart';
 import 'package:to_do_app/notes_app/managers/cubit/show_all_notes/notes_cubit.dart';
 import 'package:to_do_app/notes_app/presentation/views/add_note_view.dart';
 import 'package:to_do_app/notes_app/presentation/views/edit_and_show_note_view.dart';
@@ -23,7 +23,7 @@ class AppRouter {
             final notesCubit = settings.arguments as NotesCubit;
             return MultiBlocProvider(
               providers: [
-                BlocProvider(create: (context) => AddNoteCubit()),
+                BlocProvider(create: (context) => AddNoteBloc(),),
                 BlocProvider.value(value: notesCubit), 
               ],
               child: const AddNoteView(),
