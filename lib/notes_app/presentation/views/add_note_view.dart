@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_app/core/helpers/extension.dart';
 import 'package:to_do_app/core/helpers/show_snack_bar_middel.dart';
 import 'package:to_do_app/notes_app/data/models/note_model.dart';
-import 'package:to_do_app/notes_app/managers/cubit/bloc/add_note_bloc.dart';
-import 'package:to_do_app/notes_app/managers/cubit/show_all_notes/notes_cubit.dart';
+import 'package:to_do_app/notes_app/managers/cubit/add_note_bloc/add_note_bloc.dart';
+import 'package:to_do_app/notes_app/managers/cubit/show_all_notes_cubit/notes_cubit.dart';
 import 'package:to_do_app/notes_app/presentation/widgets/add_note_body.dart';
 
 class AddNoteView extends StatefulWidget {
