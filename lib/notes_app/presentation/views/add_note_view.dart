@@ -50,7 +50,7 @@ class _AddNoteViewState extends State<AddNoteView> {
     final note = NoteModel(
       title: title,
       subTitle: description,
-      date: DateTime.now().toString().substring(0, 10),
+      date: DateTime.now(),
       color: NoteModel.noteColors[2].toARGB32(),
     );
 

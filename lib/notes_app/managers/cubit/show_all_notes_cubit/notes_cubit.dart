@@ -15,6 +15,7 @@ class NotesCubit extends Cubit<NotesState> {
       var notesBox = Hive.box<NoteModel>(AppConstants.kNotesBox);
 
       List<NoteModel> notes = notesBox.values.toList();
+      notes.sort((a, b) => b.date.compareTo(a.date));
 
       emit(NotesSuccess(notes));
     } catch (e) {
