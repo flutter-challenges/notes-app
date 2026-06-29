@@ -1,0 +1,11 @@
+{
+  "myNotes": "My Notes",
+  "noNotesYet": "No notes yet.. Add your first note!",
+  "newNote": "New Note",
+  "editNote": "Edit Note",
+  "lastEdit": "Last edit: {date}",
+  "errorEmptyTitleAndDesc": "Please write a title and details for the note first!",
+  "errorEmptyTitle": "Please write the note title!",
+  "errorEmptyDesc": "Please write the note details!",
+  "successAddNote": "Note added successfully! 🎉"
+}

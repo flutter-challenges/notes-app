@@ -11,16 +11,10 @@ class NoteItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Color baseColor = Color(noteModel.color);
-    
-    // تنسيق التاريخ والوقت بشكل ريق ومودرن
-    // النتيجة هتكون شبه كده: Jun 26, 2026 • 11:45 PM
-// 1. الحل السريع: تمرير الـ locale كـ String مباشرة جوة الـ Constructor
-// String formattedDate = DateFormat('MMM d, yyyy • h:mm a', 'ar').format(noteModel.date);
-
-// 2. الحل الديناميكي (الأصح): يقرأ لغة التطبيق الحالية أوتوماتيك لو اتغيرت
-String formattedDate = DateFormat.yMMMd(Localizations.localeOf(context).toString())
-    .add_jm() // عشان يضيف الوقت (الساعة والدقيقة)
-    .format(noteModel.date);
+    String formattedDate =
+        DateFormat.yMMMd(Localizations.localeOf(context).toString())
+            .add_jm() 
+            .format(noteModel.date);
     return Card(
       margin: EdgeInsets.zero,
       elevation: 0,
@@ -68,8 +62,6 @@ String formattedDate = DateFormat.yMMMd(Localizations.localeOf(context).toString
                     offset: const Offset(8, -8),
                     child: IconButton(
                       onPressed: () {
-                        // noteModel.delete(); // دالة مدمجة في HiveObject لمسح العنصر فوراً!
-                        // تلميح: ستحتاج لاستدعاء fetchAllNotes بعد الحذف لتحديث الـ UI
                       },
                       constraints: const BoxConstraints(),
                       padding: const EdgeInsets.all(8),
@@ -86,7 +78,7 @@ String formattedDate = DateFormat.yMMMd(Localizations.localeOf(context).toString
               Text(
                 noteModel.subTitle,
                 style: TextStyle(
-                  fontSize: 16, 
+                  fontSize: 16,
                   color: Colors.black.withOpacity(0.65),
                   height: 1.4,
                 ),
@@ -94,7 +86,6 @@ String formattedDate = DateFormat.yMMMd(Localizations.localeOf(context).toString
                 overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(height: 16),
-              // سطر التوقيت السفلي مع إضافة أيقونة ساعة خفيفة لجمال التصميم
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [

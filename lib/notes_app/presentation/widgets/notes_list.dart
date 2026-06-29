@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:to_do_app/generated/l10n.dart';
 import 'package:to_do_app/notes_app/managers/cubit/show_all_notes_cubit/notes_cubit.dart';
 import 'package:to_do_app/notes_app/presentation/widgets/note_item.dart';
 
@@ -34,7 +35,8 @@ class NotesList extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
                         Text(
-                          "لا توجد ملاحظات بعد.. اضف ملاحظتك الأولى!",
+                          // "لا توجد ملاحظات بعد.. اضف ملاحظتك الأولى!",
+                          S.of(context).noNotesYet,
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.grey.shade500,

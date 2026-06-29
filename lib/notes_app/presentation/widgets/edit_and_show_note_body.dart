@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:to_do_app/core/helpers/extension.dart';
+import 'package:to_do_app/generated/l10n.dart';
 import 'package:to_do_app/notes_app/data/models/note_model.dart';
 import 'package:to_do_app/notes_app/presentation/widgets/custom_note_text_field.dart';
 
@@ -48,48 +50,36 @@ class _EditAndShowNoteBodyState extends State<EditAndShowNoteBody> {
       });
     }
   }
-
   @override
   Widget build(BuildContext context) {
+    final isArabic = Localizations.localeOf(context).languageCode == 'ar';
+    
+    String formattedLastEdit = DateFormat.yMMMd(Localizations.localeOf(context).toString())
+        .add_jm()
+        .format(widget.noteModel.date);
+
     return Column(
       children: [
         AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black87),
+            icon: AnimatedRotation(
+              turns: isArabic ? 0 : 0.5,
+              duration: Duration.zero,
+              child: const Icon(Icons.arrow_back_ios_new, color: Colors.black87),
+            ),
             onPressed: () => context.pop(),
           ),
-          title: const Text(
-            "تعديل الملاحظة",
-            style: TextStyle(
+          title: Text(
+            S.of(context).editNote, // 🌟
+            style: const TextStyle(
               color: Colors.black87,
               fontWeight: FontWeight.bold,
               fontSize: 20,
             ),
           ),
           actions: [
-            if (_hasChanges)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: IconButton(
-                  onPressed: _isSaving ? null : _saveNote,
-                  icon: AnimatedSwitcher(
-                    duration: const Duration(milliseconds: 250),
-                    child: _isSaving
-                        ? Icon(
-                            Icons.check_circle,
-                            color: Colors.green.shade600,
-                            size: 30,
-                          )
-                        : Icon(
-                            Icons.check_circle_outline,
-                            color: Colors.amber.shade700,
-                            size: 30,
-                          ),
-                  ),
-                ),
-              ),
           ],
         ),
         Expanded(
@@ -100,8 +90,8 @@ class _EditAndShowNoteBodyState extends State<EditAndShowNoteBody> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "آخر تعديل: ${widget.noteModel.date}",
-                  style: TextStyle(
+                  S.of(context).lastEdit(formattedLastEdit), 
+                  style: const TextStyle(
                     color: Colors.black38,
                     fontSize: 14,
                     fontWeight: FontWeight.w500,

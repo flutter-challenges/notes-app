@@ -1,7 +1,9 @@
+// ... الـ imports
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_app/core/helpers/extension.dart';
 import 'package:to_do_app/core/helpers/show_snack_bar_middel.dart';
+import 'package:to_do_app/generated/l10n.dart';
 import 'package:to_do_app/notes_app/data/models/note_model.dart';
 import 'package:to_do_app/notes_app/managers/cubit/add_note_bloc/add_note_bloc.dart';
 import 'package:to_do_app/notes_app/managers/cubit/show_all_notes_cubit/notes_cubit.dart';
@@ -38,11 +40,11 @@ class _AddNoteViewState extends State<AddNoteView> {
 
     if (title.isEmpty || description.isEmpty) {
       if (title.isEmpty && description.isEmpty) {
-        showMiddleSnackBar("برجاء كتابة عنوان وتفاصيل الملاحظة أولاً!", context);
+        showMiddleSnackBar(S.of(context).errorEmptyTitleAndDesc, context); // 🌟
       } else if (title.isEmpty) {
-        showMiddleSnackBar("برجاء كتابة عنوان الملاحظة!", context);
+        showMiddleSnackBar(S.of(context).errorEmptyTitle, context); // 🌟
       } else {
-        showMiddleSnackBar("برجاء كتابة تفاصيل الملاحظة!", context);
+        showMiddleSnackBar(S.of(context).errorEmptyDesc, context); // 🌟
       }
       return;
     }
@@ -59,6 +61,8 @@ class _AddNoteViewState extends State<AddNoteView> {
 
   @override
   Widget build(BuildContext context) {
+    final isArabic = Localizations.localeOf(context).languageCode == 'ar';
+
     return BlocConsumer<AddNoteBloc, AddNoteState>(
       listener: (context, state) {
         if (state is AddNoteFailure) {
@@ -67,7 +71,7 @@ class _AddNoteViewState extends State<AddNoteView> {
         if (state is AddNoteSuccess) {
           context.read<NotesCubit>().fetchAllNotes(); 
           context.pop();
-          showMiddleSnackBar("تمت إضافة الملاحظة بنجاح! 🎉", context);
+          showMiddleSnackBar(S.of(context).successAddNote, context); // 🌟
         }
       },
       builder: (context, state) {
@@ -78,15 +82,19 @@ class _AddNoteViewState extends State<AddNoteView> {
               elevation: 0,
               backgroundColor: Colors.transparent,
               leading: IconButton(
-                icon: const Icon(
-                  Icons.arrow_back_ios_new,
-                  color: Colors.black87,
+                icon: AnimatedRotation(
+                  turns: isArabic ? 0 : 0.5,
+                  duration: Duration.zero,
+                  child: const Icon(
+                    Icons.arrow_back_ios_new,
+                    color: Colors.black87,
+                  ),
                 ),
                 onPressed: () => context.pop(),
               ),
-              title: const Text(
-                "ملاحظة جديدة",
-                style: TextStyle(
+              title: Text(
+                S.of(context).newNote, // 🌟
+                style: const TextStyle(
                   color: Colors.black87,
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
