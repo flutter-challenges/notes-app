@@ -40,6 +40,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "noNotesYet": MessageLookupByLibrary.simpleMessage(
       "لا توجد ملاحظات بعد.. اضف ملاحظتك الأولى!",
     ),
+    "noteDetailsHint": MessageLookupByLibrary.simpleMessage(
+      "اكتب تفاصيل ملاحظتك هنا...",
+    ),
+    "noteTitleHint": MessageLookupByLibrary.simpleMessage("عنوان الملاحظة..."),
     "successAddNote": MessageLookupByLibrary.simpleMessage(
       "تمت إضافة الملاحظة بنجاح! 🎉",
     ),

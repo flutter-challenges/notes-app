@@ -7,5 +7,7 @@
   "errorEmptyTitleAndDesc": "برجاء كتابة عنوان وتفاصيل الملاحظة أولاً!",
   "errorEmptyTitle": "برجاء كتابة عنوان الملاحظة!",
   "errorEmptyDesc": "برجاء كتابة تفاصيل الملاحظة!",
-  "successAddNote": "تمت إضافة الملاحظة بنجاح! 🎉"
+  "successAddNote": "تمت إضافة الملاحظة بنجاح! 🎉",
+  "noteTitleHint": "عنوان الملاحظة...",
+"noteDetailsHint": "اكتب تفاصيل ملاحظتك هنا..."
 }

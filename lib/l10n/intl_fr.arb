@@ -7,5 +7,7 @@
   "errorEmptyTitleAndDesc": "Veuillez d'abord écrire un titre et des détails!",
   "errorEmptyTitle": "Veuillez écrire le titre de la note!",
   "errorEmptyDesc": "Veuillez écrire les détails de la note!",
-  "successAddNote": "Note ajoutée avec succès! 🎉"
+  "successAddNote": "Note ajoutée avec succès! 🎉",
+  "noteTitleHint": "Titre de la note...",
+  "noteDetailsHint": "Écrivez les détails de votre note ici..."
 }

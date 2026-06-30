@@ -40,6 +40,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "noNotesYet": MessageLookupByLibrary.simpleMessage(
       "Pas encore de notes.. Ajoutez votre première note!",
     ),
+    "noteDetailsHint": MessageLookupByLibrary.simpleMessage(
+      "Écrivez les détails de votre note ici...",
+    ),
+    "noteTitleHint": MessageLookupByLibrary.simpleMessage(
+      "Titre de la note...",
+    ),
     "successAddNote": MessageLookupByLibrary.simpleMessage(
       "Note ajoutée avec succès! 🎉",
     ),

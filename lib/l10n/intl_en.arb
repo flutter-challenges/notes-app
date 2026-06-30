@@ -7,5 +7,7 @@
   "errorEmptyTitleAndDesc": "Please write a title and details for the note first!",
   "errorEmptyTitle": "Please write the note title!",
   "errorEmptyDesc": "Please write the note details!",
-  "successAddNote": "Note added successfully! 🎉"
+  "successAddNote": "Note added successfully! 🎉",
+  "noteTitleHint": "Note Title...",
+"noteDetailsHint": "Write your note details here..."
 }

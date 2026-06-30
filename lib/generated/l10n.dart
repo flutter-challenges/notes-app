@@ -128,6 +128,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Note Title...`
+  String get noteTitleHint {
+    return Intl.message(
+      'Note Title...',
+      name: 'noteTitleHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Write your note details here...`
+  String get noteDetailsHint {
+    return Intl.message(
+      'Write your note details here...',
+      name: 'noteDetailsHint',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -1,131 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:to_do_app/core/helpers/extension.dart';
 import 'package:to_do_app/generated/l10n.dart';
 import 'package:to_do_app/notes_app/data/models/note_model.dart';
 import 'package:to_do_app/notes_app/presentation/widgets/custom_note_text_field.dart';
 
-class EditAndShowNoteBody extends StatefulWidget {
+class EditAndShowNoteBody extends StatelessWidget {
   final NoteModel noteModel;
-  const EditAndShowNoteBody({super.key, required this.noteModel});
+  final TextEditingController titleController;
+  final TextEditingController desController;
 
-  @override
-  State<EditAndShowNoteBody> createState() => _EditAndShowNoteBodyState();
-}
+  const EditAndShowNoteBody({
+    super.key,
+    required this.noteModel,
+    required this.titleController,
+    required this.desController,
+  });
 
-class _EditAndShowNoteBodyState extends State<EditAndShowNoteBody> {
-  late TextEditingController _titleController;
-  late TextEditingController _desController;
-  //? depende on _checkForChanges
-  bool _hasChanges = false;
-  //? depende on _saveNote
-  bool _isSaving = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _titleController = TextEditingController(text: widget.noteModel.title);
-    _desController = TextEditingController(text: widget.noteModel.subTitle);
-    _titleController.addListener(_checkForChanges);
-    _desController.addListener(_checkForChanges);
-  }
-
-  @override
-  void dispose() {
-    _titleController.removeListener(_checkForChanges);
-    _desController.removeListener(_checkForChanges);
-    _titleController.dispose();
-    _desController.dispose();
-    super.dispose();
-  }
-
-  void _checkForChanges() {
-    final bool changed =
-        _titleController.text != widget.noteModel.title ||
-        _desController.text != widget.noteModel.subTitle;
-
-    if (changed != _hasChanges) {
-      setState(() {
-        _hasChanges = changed;
-      });
-    }
-  }
   @override
   Widget build(BuildContext context) {
-    final isArabic = Localizations.localeOf(context).languageCode == 'ar';
-    
-    String formattedLastEdit = DateFormat.yMMMd(Localizations.localeOf(context).toString())
-        .add_jm()
-        .format(widget.noteModel.date);
+    String formattedLastEdit = DateFormat.yMMMd(
+      Localizations.localeOf(context).toString(),
+    ).add_jm().format(noteModel.date);
 
-    return Column(
-      children: [
-        AppBar(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          leading: IconButton(
-            icon: AnimatedRotation(
-              turns: isArabic ? 0 : 0.5,
-              duration: Duration.zero,
-              child: const Icon(Icons.arrow_back_ios_new, color: Colors.black87),
-            ),
-            onPressed: () => context.pop(),
-          ),
-          title: Text(
-            S.of(context).editNote, // 🌟
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            S.of(context).lastEdit(formattedLastEdit),
             style: const TextStyle(
-              color: Colors.black87,
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
+              color: Colors.black38,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
             ),
           ),
-          actions: [
-          ],
-        ),
-        Expanded(
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  S.of(context).lastEdit(formattedLastEdit), 
-                  style: const TextStyle(
-                    color: Colors.black38,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                const SizedBox(height: 16),
-
-                CustomNoteTextField(
-                  controller: _titleController,
-                  hintAr: "عنوان الملاحظة...",
-                  hintEn: "Note Title...",
-                ),
-                const SizedBox(height: 16),
-
-                CustomNoteTextField(
-                  controller: _desController,
-                  maxLines: 25,
-                  hintAr: "اكتب تفاصيل ملاحظتك هنا...",
-                  hintEn: "Write your note details here...",
-                ),
-              ],
-            ),
+          const SizedBox(height: 16),
+          
+          CustomNoteTextField(
+            controller: titleController,
+            hintText: S.of(context).noteTitleHint, 
           ),
-        ),
-      ],
+          const SizedBox(height: 16),
+          
+          CustomNoteTextField(
+            controller: desController,
+            maxLines: 25,
+            hintText: S.of(context).noteDetailsHint,
+          ),
+        ],
+      ),
     );
-  }
-
-  void _saveNote() async {
-    setState(() {
-      _isSaving = true;
-    });
-    await Future.delayed(const Duration(milliseconds: 600));
-    if (!mounted) return;
-    context.pop();
   }
 }

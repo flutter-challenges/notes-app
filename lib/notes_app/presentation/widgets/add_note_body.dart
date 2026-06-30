@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/generated/l10n.dart';
 import 'package:to_do_app/notes_app/presentation/widgets/custom_note_text_field.dart';
 import 'package:to_do_app/notes_app/presentation/widgets/media_action_button.dart';
 
@@ -24,16 +25,14 @@ class AddNoteBody extends StatelessWidget {
               children: [
                 CustomNoteTextField(
                   controller: titleController,
-                  hintAr: "عنوان الملاحظة...",
-                  hintEn: "Note Title...",
+                  hintText: S.of(context).noteTitleHint,
                 ),
                 const SizedBox(height: 16),
 
                 CustomNoteTextField(
                   controller: desController,
                   maxLines: 20,
-                  hintAr: "اكتب تفاصيل ملاحظتك هنا...",
-                  hintEn: "Write your note details here...",
+                  hintText: S.of(context).noteDetailsHint,
                 ),
               ],
             ),

@@ -1,28 +1,21 @@
 import 'package:flutter/material.dart';
 
-class CustomNoteTextField extends StatefulWidget {
+class CustomNoteTextField extends StatelessWidget {
   final TextEditingController controller;
   final int? maxLines;
-  final String hintAr;
-  final String hintEn;
+  final String hintText; 
 
   const CustomNoteTextField({
     super.key,
     required this.controller,
     this.maxLines,
-    required this.hintAr,
-    required this.hintEn,
+    required this.hintText,
   });
 
   @override
-  State<CustomNoteTextField> createState() => _CustomNoteTextFieldState();
-}
-
-class _CustomNoteTextFieldState extends State<CustomNoteTextField> {
-  bool isArabic = true;
-
-  @override
   Widget build(BuildContext context) {
+    final textDirection = Directionality.of(context);
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -36,59 +29,22 @@ class _CustomNoteTextFieldState extends State<CustomNoteTextField> {
         ],
       ),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        textDirection: isArabic ? TextDirection.rtl : TextDirection.ltr,
-        children: [
-          Expanded(
-            child: TextField(
-              controller: widget.controller,
-              maxLines: widget.maxLines,
-              textDirection: isArabic ? TextDirection.rtl : TextDirection.ltr,
-              keyboardType: TextInputType.multiline,
-              style: const TextStyle(
-                fontSize: 17,
-                color: Colors.black87,
-                height: 1.4,
-              ),
-              decoration: InputDecoration(
-                hintText: isArabic ? widget.hintAr : widget.hintEn,
-                hintTextDirection: isArabic ? TextDirection.rtl : TextDirection.ltr,
-                hintStyle: TextStyle(color: Colors.grey.shade400, fontSize: 15),
-                border: InputBorder.none,
-              ),
-            ),
-          ),
-          const SizedBox(width: 10),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  isArabic = !isArabic;
-                });
-              },
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 250),
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                decoration: BoxDecoration(
-                  color: isArabic
-                      ? const Color.fromARGB(255, 255, 219, 196)
-                      : Colors.amber.shade700,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Text(
-                  isArabic ? "العربية" : "English",
-                  style: TextStyle(
-                    color: isArabic ? Colors.brown.shade900 : Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
+      child: TextField(
+        controller: controller,
+        maxLines: maxLines,
+        textDirection: textDirection, 
+        keyboardType: TextInputType.multiline,
+        style: const TextStyle(
+          fontSize: 17,
+          color: Colors.black87,
+          height: 1.4,
+        ),
+        decoration: InputDecoration(
+          hintText: hintText,
+          hintTextDirection: textDirection,
+          hintStyle: TextStyle(color: Colors.grey.shade400, fontSize: 15),
+          border: InputBorder.none,
+        ),
       ),
     );
   }
