@@ -9,5 +9,6 @@
   "errorEmptyDesc": "برجاء كتابة تفاصيل الملاحظة!",
   "successAddNote": "تمت إضافة الملاحظة بنجاح! 🎉",
   "noteTitleHint": "عنوان الملاحظة...",
-"noteDetailsHint": "اكتب تفاصيل ملاحظتك هنا..."
+"noteDetailsHint": "اكتب تفاصيل ملاحظتك هنا...",
+"failureMessage": "حدث خطأ أثناء حفظ الملاحظة"
 }

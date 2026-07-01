@@ -34,6 +34,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorEmptyTitleAndDesc": MessageLookupByLibrary.simpleMessage(
       "Veuillez d\'abord écrire un titre et des détails!",
     ),
+    "failureMessage": MessageLookupByLibrary.simpleMessage(
+      "an error occured while saving note...",
+    ),
     "lastEdit": m0,
     "myNotes": MessageLookupByLibrary.simpleMessage("Mes Notes"),
     "newNote": MessageLookupByLibrary.simpleMessage("Nouvelle Note"),

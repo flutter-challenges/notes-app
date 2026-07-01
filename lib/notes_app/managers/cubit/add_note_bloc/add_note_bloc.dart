@@ -29,7 +29,7 @@ class AddNoteBloc extends Bloc<AddNoteEvent, AddNoteState> {
       await notesBox.add(event.note);
       emit(AddNoteSuccess());
     } catch (e) {
-      emit(AddNoteFailure("حدث خطأ أثناء حفظ الملاحظة: ${e.toString()}"));
+      emit(AddNoteFailure("حدث خطأ أثناء حفظ الملاحظة"));
     }
   }
 }

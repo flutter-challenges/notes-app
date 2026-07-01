@@ -148,6 +148,16 @@ class S {
       args: [],
     );
   }
+
+  /// `an error occured while saving note...`
+  String get failureMessage {
+    return Intl.message(
+      'an error occured while saving note...',
+      name: 'failureMessage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

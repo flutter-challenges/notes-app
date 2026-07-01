@@ -34,6 +34,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "errorEmptyTitleAndDesc": MessageLookupByLibrary.simpleMessage(
       "برجاء كتابة عنوان وتفاصيل الملاحظة أولاً!",
     ),
+    "failureMessage": MessageLookupByLibrary.simpleMessage(
+      "حدث خطأ أثناء حفظ الملاحظة",
+    ),
     "lastEdit": m0,
     "myNotes": MessageLookupByLibrary.simpleMessage("ملاحظاتي"),
     "newNote": MessageLookupByLibrary.simpleMessage("ملاحظة جديدة"),
