@@ -10,5 +10,6 @@
   "successAddNote": "تمت إضافة الملاحظة بنجاح! 🎉",
   "noteTitleHint": "عنوان الملاحظة...",
 "noteDetailsHint": "اكتب تفاصيل ملاحظتك هنا...",
-"failureMessage": "حدث خطأ أثناء حفظ الملاحظة"
+"failureMessage": "حدث خطأ أثناء حفظ الملاحظة",
+"save": "حفظ"
 }

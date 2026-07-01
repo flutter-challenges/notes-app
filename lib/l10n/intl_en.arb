@@ -10,6 +10,7 @@
   "successAddNote": "Note added successfully! 🎉",
   "noteTitleHint": "Note Title...",
 "noteDetailsHint": "Write your note details here...",
-"failureMessage": "an error occured while saving note..."
+"failureMessage": "an error occured while saving note...",
+"save": "Save"
 
 }

@@ -47,6 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "اكتب تفاصيل ملاحظتك هنا...",
     ),
     "noteTitleHint": MessageLookupByLibrary.simpleMessage("عنوان الملاحظة..."),
+    "save": MessageLookupByLibrary.simpleMessage("حفظ"),
     "successAddNote": MessageLookupByLibrary.simpleMessage(
       "تمت إضافة الملاحظة بنجاح! 🎉",
     ),

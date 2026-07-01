@@ -49,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noteTitleHint": MessageLookupByLibrary.simpleMessage(
       "Titre de la note...",
     ),
+    "save": MessageLookupByLibrary.simpleMessage("Enregistrer"),
     "successAddNote": MessageLookupByLibrary.simpleMessage(
       "Note ajoutée avec succès! 🎉",
     ),
