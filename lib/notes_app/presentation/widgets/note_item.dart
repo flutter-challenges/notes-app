@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:to_do_app/core/helpers/date_extension.dart';
 import 'package:to_do_app/core/helpers/extension.dart';
 import 'package:to_do_app/core/routing/routes.dart';
 import 'package:to_do_app/notes_app/data/models/note_model.dart';
@@ -11,10 +11,6 @@ class NoteItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Color baseColor = Color(noteModel.color);
-    String formattedDate =
-        DateFormat.yMMMd(Localizations.localeOf(context).toString())
-            .add_jm() 
-            .format(noteModel.date);
     return Card(
       margin: EdgeInsets.zero,
       elevation: 0,
@@ -96,7 +92,7 @@ class NoteItem extends StatelessWidget {
                   ),
                   const SizedBox(width: 4),
                   Text(
-                    formattedDate,
+                   noteModel.date.toFormattedString(context),
                     style: TextStyle(
                       fontSize: 12,
                       color: Colors.black.withOpacity(0.4),
