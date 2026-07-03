@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_app/core/helpers/date_extension.dart';
 import 'package:to_do_app/core/helpers/extension.dart';
 import 'package:to_do_app/core/routing/routes.dart';
 import 'package:to_do_app/notes_app/data/models/note_model.dart';
+import 'package:to_do_app/notes_app/managers/cubit/show_all_notes_cubit/notes_cubit.dart';
 
 class NoteItem extends StatelessWidget {
   final NoteModel noteModel;
@@ -18,7 +20,13 @@ class NoteItem extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: () {
-          context.pushNamed(AppRoutes.editAndShowNoteView, argument: noteModel);
+          context.pushNamed(
+            AppRoutes.editAndShowNoteView,
+            argument: {
+              'noteModel': noteModel,
+              'notesCubit': context.read<NotesCubit>(),
+            },
+          );
         },
         splashColor: Colors.black.withOpacity(0.05),
         highlightColor: Colors.black.withOpacity(0.02),
@@ -57,8 +65,7 @@ class NoteItem extends StatelessWidget {
                   Transform.translate(
                     offset: const Offset(8, -8),
                     child: IconButton(
-                      onPressed: () {
-                      },
+                      onPressed: () {},
                       constraints: const BoxConstraints(),
                       padding: const EdgeInsets.all(8),
                       icon: Icon(
@@ -92,7 +99,7 @@ class NoteItem extends StatelessWidget {
                   ),
                   const SizedBox(width: 4),
                   Text(
-                   noteModel.date.toFormattedString(context),
+                    noteModel.date.toFormattedString(context),
                     style: TextStyle(
                       fontSize: 12,
                       color: Colors.black.withOpacity(0.4),

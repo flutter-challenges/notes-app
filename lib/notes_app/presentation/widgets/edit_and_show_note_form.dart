@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:to_do_app/core/helpers/date_extension.dart';
 import 'package:to_do_app/generated/l10n.dart';
 import 'package:to_do_app/notes_app/data/models/note_model.dart';
 import 'package:to_do_app/notes_app/presentation/widgets/custom_note_text_field.dart';
 
-class EditAndShowNoteBody extends StatelessWidget {
+class EditAndShowNoteForm extends StatelessWidget {
   final NoteModel noteModel;
   final TextEditingController titleController;
   final TextEditingController desController;
 
-  const EditAndShowNoteBody({
+  const EditAndShowNoteForm({
     super.key,
     required this.noteModel,
     required this.titleController,
@@ -18,10 +18,6 @@ class EditAndShowNoteBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String formattedLastEdit = DateFormat.yMMMd(
-      Localizations.localeOf(context).toString(),
-    ).add_jm().format(noteModel.date);
-
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       padding: const EdgeInsets.all(16.0),
@@ -29,21 +25,15 @@ class EditAndShowNoteBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            S.of(context).lastEdit(formattedLastEdit),
-            style: const TextStyle(
-              color: Colors.black38,
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-            ),
+            S.of(context).lastEdit(noteModel.date.toFormattedString(context)),
+            style: const TextStyle(color: Colors.black38, fontSize: 14, fontWeight: FontWeight.w500),
           ),
           const SizedBox(height: 16),
-          
           CustomNoteTextField(
             controller: titleController,
-            hintText: S.of(context).noteTitleHint, 
+            hintText: S.of(context).noteTitleHint,
           ),
           const SizedBox(height: 16),
-          
           CustomNoteTextField(
             controller: desController,
             maxLines: 25,

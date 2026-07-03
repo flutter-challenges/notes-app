@@ -5,7 +5,7 @@ import 'package:to_do_app/core/helpers/show_snack_bar_middel.dart';
 import 'package:to_do_app/generated/l10n.dart';
 import 'package:to_do_app/notes_app/managers/cubit/add_note_bloc/add_note_bloc.dart';
 import 'package:to_do_app/notes_app/managers/cubit/show_all_notes_cubit/notes_cubit.dart';
-import '../widgets/add_note_form.dart'; // هنعمل الـ widget دي حالا
+import 'package:to_do_app/notes_app/presentation/widgets/add_note_form.dart';
 
 class AddNoteView extends StatelessWidget {
   const AddNoteView({super.key});

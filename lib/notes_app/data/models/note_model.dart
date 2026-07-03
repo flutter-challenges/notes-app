@@ -5,7 +5,6 @@ part 'note_model.g.dart';
 
 @HiveType(typeId: 0) //? 0 ----> 223
 class NoteModel extends HiveObject {
-  
   @HiveField(0)
   final String title;
 
@@ -16,7 +15,7 @@ class NoteModel extends HiveObject {
   final DateTime date;
 
   @HiveField(3)
-  final int color; 
+  final int color;
 
   NoteModel({
     required this.title,
@@ -24,6 +23,19 @@ class NoteModel extends HiveObject {
     required this.date,
     required this.color,
   });
+  NoteModel copyWith({
+    String? title,
+    String? subTitle,
+    DateTime? date,
+    int? color,
+  }) {
+    return NoteModel(
+      title: title ?? this.title,
+      subTitle: subTitle ?? this.subTitle,
+      date: date ?? this.date,
+      color: color ?? this.color,
+    );
+  }
 
   static final List<Color> noteColors = [
     const Color(0xFFE1BEE7),
