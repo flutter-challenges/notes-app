@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:to_do_app/core/helpers/custom_middel_snack_bar.dart';
 import 'package:to_do_app/core/helpers/extension.dart';
-import 'package:to_do_app/core/helpers/show_snack_bar_middel.dart';
 import 'package:to_do_app/generated/l10n.dart';
 import 'package:to_do_app/notes_app/managers/cubit/add_note_bloc/add_note_bloc.dart';
 import 'package:to_do_app/notes_app/managers/cubit/show_all_notes_cubit/notes_cubit.dart';
@@ -39,12 +39,22 @@ class AddNoteView extends StatelessWidget {
       body: BlocConsumer<AddNoteBloc, AddNoteState>(
         listener: (context, state) {
           if (state is AddNoteFailure) {
-            showMiddleSnackBar(state.errMessage, context);
+            // استدعاء حالة الفشل باللون الأحمر المتناسق
+            CustomMiddleSnackBar.show(
+              context, 
+              message: state.errMessage, 
+              type: MiddleSnackBarType.error,
+            );
           }
           if (state is AddNoteSuccess) {
             context.read<NotesCubit>().fetchAllNotes();
             context.pop();
-            showMiddleSnackBar(S.of(context).successAddNote, context);
+            // استدعاء حالة النجاح باللون الـ Primary المفضل لك
+            CustomMiddleSnackBar.show(
+              context, 
+              message: S.of(context).successAddNote, 
+              type: MiddleSnackBarType.success,
+            );
           }
         },
         builder: (context, state) {

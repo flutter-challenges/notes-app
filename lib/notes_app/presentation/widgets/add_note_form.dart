@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:to_do_app/core/helpers/show_snack_bar_middel.dart';
+import 'package:to_do_app/core/helpers/custom_middel_snack_bar.dart';
 import 'package:to_do_app/generated/l10n.dart';
 import 'package:to_do_app/notes_app/data/models/note_model.dart';
 import 'package:to_do_app/notes_app/managers/cubit/add_note_bloc/add_note_bloc.dart';
@@ -39,11 +39,11 @@ class _AddNoteFormState extends State<AddNoteForm> {
 
     if (title.isEmpty || description.isEmpty) {
       if (title.isEmpty && description.isEmpty) {
-        showMiddleSnackBar(S.of(context).errorEmptyTitleAndDesc, context);
+          CustomMiddleSnackBar.show( message: S.of(context).errorEmptyTitleAndDesc, context ,type: MiddleSnackBarType.error);
       } else if (title.isEmpty) {
-        showMiddleSnackBar(S.of(context).errorEmptyTitle, context);
+        CustomMiddleSnackBar.show( message: S.of(context).errorEmptyTitle, context ,type: MiddleSnackBarType.error);
       } else {
-        showMiddleSnackBar(S.of(context).errorEmptyDesc, context);
+        CustomMiddleSnackBar.show( message: S.of(context).errorEmptyDesc, context ,type: MiddleSnackBarType.error);
       }
       return;
     }

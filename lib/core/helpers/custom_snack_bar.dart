@@ -13,7 +13,7 @@ class CustomSnackBar {
 
     final (backgroundColor, icon) = switch (type) {
       SnackBarType.success => (
-          Colors.green.shade800,
+          Colors.red.shade800,
           const Icon(Icons.check_circle_rounded, color: Colors.white, size: 22)
         ),
       SnackBarType.error => (
