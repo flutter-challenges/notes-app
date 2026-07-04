@@ -39,7 +39,6 @@ class AddNoteView extends StatelessWidget {
       body: BlocConsumer<AddNoteBloc, AddNoteState>(
         listener: (context, state) {
           if (state is AddNoteFailure) {
-            // استدعاء حالة الفشل باللون الأحمر المتناسق
             CustomMiddleSnackBar.show(
               context, 
               message: state.errMessage, 
@@ -49,7 +48,6 @@ class AddNoteView extends StatelessWidget {
           if (state is AddNoteSuccess) {
             context.read<NotesCubit>().fetchAllNotes();
             context.pop();
-            // استدعاء حالة النجاح باللون الـ Primary المفضل لك
             CustomMiddleSnackBar.show(
               context, 
               message: S.of(context).successAddNote, 

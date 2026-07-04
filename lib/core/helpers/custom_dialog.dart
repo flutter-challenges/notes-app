@@ -3,26 +3,28 @@ import 'package:flutter/material.dart';
 class CustomDialog {
   static void showConfirmation({
     required BuildContext context,
-    required String title,
+    String title = '',
     required String content,
     required String confirmText,
     required VoidCallback onConfirm,
     String cancelText = 'إلغاء',
-    Color confirmButtonColor = Colors.redAccent,
+    Color confirmButtonColor = Colors.orange,
     IconData topIcon = Icons.delete_sweep_rounded,
   }) {
     showDialog(
       context: context,
-      barrierDismissible: true, 
+      barrierDismissible: true,
       builder: (dialogContext) {
         return Dialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
           elevation: 10,
           backgroundColor: Colors.white,
           child: Padding(
             padding: const EdgeInsets.all(24.0),
             child: Column(
-              mainAxisSize: MainAxisSize.min, 
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
                   padding: const EdgeInsets.all(16),
@@ -61,11 +63,16 @@ class CustomDialog {
                         style: OutlinedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(vertical: 14),
                           side: BorderSide(color: Colors.grey.shade300),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(14),
+                          ),
                         ),
                         child: Text(
                           cancelText,
-                          style: const TextStyle(color: Colors.grey, fontWeight: FontWeight.bold),
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
@@ -73,24 +80,29 @@ class CustomDialog {
                     Expanded(
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.pop(dialogContext); 
-                          onConfirm(); 
+                          Navigator.pop(dialogContext);
+                          onConfirm();
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: confirmButtonColor,
                           foregroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(vertical: 14),
                           elevation: 0,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(14),
+                          ),
                         ),
                         child: Text(
                           confirmText,
-                          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                          ),
                         ),
                       ),
                     ),
                   ],
-                )
+                ),
               ],
             ),
           ),

@@ -12,26 +12,13 @@ class CustomMiddleSnackBar {
     final double screenWidth = MediaQuery.of(context).size.width;
     final double keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
 
-    // تصفير أي سناب بار معروض لمنع التراكم
     ScaffoldMessenger.of(context).clearSnackBars();
 
-    // اللون المفضل الممرر للتطبيق (الأساسي)
-    const Color primaryColor = Color(0xFFFFCCBC);
-    // لون برتقالي أغمق قليلاً للنصوص والأيقونات في حالة النجاح لضمان وضوح القراءة
-    final Color successAccent = primaryColor; 
+    const Color themeColor = Colors.orange;
 
-    // تحديد الأيقونة ولون الحواف والخط بناءً على نوع الـ SnackBar
-    final (icon, borderColor, textColor) = switch (type) {
-      MiddleSnackBarType.success => (
-          Icon(Icons.check_circle_rounded, color: successAccent, size: 30),
-          primaryColor, // حواف بلون الخوخ الفاتح
-          successAccent,
-        ),
-      MiddleSnackBarType.error => (
-          const Icon(Icons.error_outline_rounded, color: primaryColor, size: 30),
-          primaryColor, // حواف حمراء خفيفة
-          primaryColor,
-        ),
+    final IconData iconData = switch (type) {
+      MiddleSnackBarType.success => Icons.check_circle_rounded,
+      MiddleSnackBarType.error => Icons.error_outline_rounded,
     };
 
     ScaffoldMessenger.of(context).showSnackBar(
@@ -50,34 +37,38 @@ class CustomMiddleSnackBar {
         content: Container(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           decoration: BoxDecoration(
-            // خلفية بيضاء ناصعة بدلاً من الأسود
             color: Colors.white,
-            borderRadius: BorderRadius.circular(16),
-            // تحديد لون الحواف بناءً على نوع التنبيه لجعل الشكل جمالي
-            border: Border.all(color: borderColor, width: 2.3),
+            borderRadius: BorderRadius.circular(24),
             boxShadow: [
               BoxShadow(
-                // ظل ناعم ورمادي خفيف جداً ليظهر الكارد كأنه طائر فوق الواجهة
-                color: Colors.black.withOpacity(0.08),
-                blurRadius: 16,
-                offset: const Offset(0, 6),
+                color: Colors.black.withOpacity(0.1),
+                blurRadius: 20,
+                offset: const Offset(0, 8),
               ),
             ],
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              icon,
-              const SizedBox(width: 12),
+              Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  color: themeColor.withOpacity(0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(iconData, color: themeColor, size: 30),
+              ),
+              const SizedBox(width: 14),
               Expanded(
                 child: Text(
                   message,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: textColor, // لون النص يتغير حسب نجاح أو فشل التنبيه
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
+                  style: const TextStyle(
+                    color: Colors.black87,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                    height: 1.3,
                   ),
                 ),
               ),
