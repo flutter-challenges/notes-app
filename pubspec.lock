@@ -169,6 +169,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.19.1"
+  contextualactionbar:
+    dependency: "direct main"
+    description:
+      name: contextualactionbar
+      sha256: "7ce810333dc5408060f158bb9661ceb1c20be051ed176ab048faccf4e4116772"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.0"
   convert:
     dependency: transitive
     description:
