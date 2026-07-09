@@ -18,4 +18,6 @@ class DeleteNoteCubit extends Cubit<DeleteNoteState> {
       emit(DeleteNoteFailure(e.toString()));
     }
   }
+
+  
 }
