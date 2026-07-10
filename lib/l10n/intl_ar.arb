@@ -9,7 +9,13 @@
   "errorEmptyDesc": "برجاء كتابة تفاصيل الملاحظة!",
   "successAddNote": "تمت إضافة الملاحظة بنجاح! 🎉",
   "noteTitleHint": "عنوان الملاحظة...",
-"noteDetailsHint": "اكتب تفاصيل ملاحظتك هنا...",
-"failureMessage": "حدث خطأ أثناء حفظ الملاحظة",
-"save": "حفظ"
+  "noteDetailsHint": "اكتب تفاصيل ملاحظتك هنا...",
+  "failureMessage": "حدث خطأ أثناء حفظ الملاحظة",
+  "save": "حفظ",
+  "selectLanguage": "اختيار اللغة",
+  "cancel": "إلغاء",
+  "deleteNote": "حذف الملاحظة",
+  "deleteNoteConfirmation": "هل تريد حذف هذه الملاحظة؟",
+  "delete": "حذف",
+  "noteDeletedSuccessfully": "تم حذف الملاحظة بنجاح! 🎉"
 }

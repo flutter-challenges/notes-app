@@ -24,6 +24,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
+    "delete": MessageLookupByLibrary.simpleMessage("حذف"),
+    "deleteNote": MessageLookupByLibrary.simpleMessage("حذف الملاحظة"),
+    "deleteNoteConfirmation": MessageLookupByLibrary.simpleMessage(
+      "هل تريد حذف هذه الملاحظة؟",
+    ),
     "editNote": MessageLookupByLibrary.simpleMessage("تعديل الملاحظة"),
     "errorEmptyDesc": MessageLookupByLibrary.simpleMessage(
       "برجاء كتابة تفاصيل الملاحظة!",
@@ -48,6 +54,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "noteTitleHint": MessageLookupByLibrary.simpleMessage("عنوان الملاحظة..."),
     "save": MessageLookupByLibrary.simpleMessage("حفظ"),
+    "selectLanguage": MessageLookupByLibrary.simpleMessage("اختيار اللغة"),
     "successAddNote": MessageLookupByLibrary.simpleMessage(
       "تمت إضافة الملاحظة بنجاح! 🎉",
     ),

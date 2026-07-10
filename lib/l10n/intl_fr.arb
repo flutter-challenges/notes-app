@@ -11,5 +11,11 @@
   "noteTitleHint": "Titre de la note...",
   "noteDetailsHint": "Écrivez les détails de votre note ici...",
   "failureMessage": "an error occured while saving note...",
-  "save": "Enregistrer"
+  "save": "Enregistrer",
+  "selectLanguage": "Sélectionner la langue",
+  "cancel": "Annuler",
+  "deleteNote": "Supprimer la note",
+  "deleteNoteConfirmation": "Êtes-vous sûr de vouloir supprimer cette note?",
+  "delete": "Supprimer",
+  "NoteDeletedSuccessfully": "Note supprimée avec succès! 🎉"
 }

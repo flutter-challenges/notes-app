@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_app/core/helpers/custom_dialog.dart';
 import 'package:to_do_app/core/helpers/custom_snack_bar.dart';
+import 'package:to_do_app/generated/l10n.dart';
 import 'package:to_do_app/notes_app/data/models/note_model.dart';
 import 'package:to_do_app/notes_app/managers/cubit/delete_note/delete_note_cubit.dart';
 import 'package:to_do_app/notes_app/managers/cubit/show_all_notes_cubit/notes_cubit.dart';
@@ -16,7 +17,7 @@ class DeleteButton extends StatelessWidget {
       listener: (context, state) {
         if (state is DeleteNoteSuccess) {
           context.read<NotesCubit>().fetchAllNotes();
-          CustomSnackBar.show(context, message: 'تم حذف الملاحظة بنجاح', type: SnackBarType.success);
+          CustomSnackBar.show(context, message: S.of(context).NoteDeletedSuccessfully, type: SnackBarType.success);
         }
       },
       builder: (context, state) {
@@ -27,9 +28,9 @@ class DeleteButton extends StatelessWidget {
                 ? null 
                 : () => CustomDialog.showConfirmation( 
                     context: context,
-                    title: 'حذف الملاحظة',
-                    content: 'هل تريد حذف هذه الملاحظة؟',
-                    confirmText: 'حذف',
+                    title: S.of(context).deleteNote,
+                    content: S.of(context).deleteNoteConfirmation,
+                    confirmText: S.of(context).delete,
                     onConfirm: () => context.read<DeleteNoteCubit>().deleteNote(note: noteModel),
                   ),
             constraints: const BoxConstraints(),

@@ -1,8 +1,8 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart'; 
 
 part 'view_state.dart';
 
-class ViewCubit extends Cubit<ViewState> {
+class ViewCubit extends HydratedCubit<ViewState> {
   ViewCubit() : super(ViewAsListState());
 
   void toggleView() {
@@ -11,5 +11,21 @@ class ViewCubit extends Cubit<ViewState> {
     } else {
       emit(ViewAsListState()); 
     }
+  }
+
+  @override
+  ViewState? fromJson(Map<String, dynamic> json) {
+    final isGrid = json['isGridView'] as bool?;
+    if (isGrid == true) {
+      return ViewAsGridState();
+    }
+    return ViewAsListState();
+  }
+
+  @override
+  Map<String, dynamic>? toJson(ViewState state) {
+    return {
+      'isGridView': state is ViewAsGridState, 
+    };
   }
 }

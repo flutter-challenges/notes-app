@@ -24,6 +24,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "NoteDeletedSuccessfully": MessageLookupByLibrary.simpleMessage(
+      "Note deleted successfully! 🎉",
+    ),
+    "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+    "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+    "deleteNote": MessageLookupByLibrary.simpleMessage("Delete Note"),
+    "deleteNoteConfirmation": MessageLookupByLibrary.simpleMessage(
+      "Are you sure you want to delete this note?",
+    ),
     "editNote": MessageLookupByLibrary.simpleMessage("Edit Note"),
     "errorEmptyDesc": MessageLookupByLibrary.simpleMessage(
       "Please write the note details!",
@@ -48,6 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "noteTitleHint": MessageLookupByLibrary.simpleMessage("Note Title..."),
     "save": MessageLookupByLibrary.simpleMessage("Save"),
+    "selectLanguage": MessageLookupByLibrary.simpleMessage("Select Language"),
     "successAddNote": MessageLookupByLibrary.simpleMessage(
       "Note added successfully! 🎉",
     ),

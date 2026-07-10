@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/generated/l10n.dart';
 import 'package:to_do_app/notes_app/presentation/widgets/custom_pop_menu_button.dart';
-import 'package:to_do_app/notes_app/presentation/widgets/language_picker_button.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({

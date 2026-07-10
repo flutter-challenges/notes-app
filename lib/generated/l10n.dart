@@ -163,6 +163,51 @@ class S {
   String get save {
     return Intl.message('Save', name: 'save', desc: '', args: []);
   }
+
+  /// `Select Language`
+  String get selectLanguage {
+    return Intl.message(
+      'Select Language',
+      name: 'selectLanguage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message('Cancel', name: 'cancel', desc: '', args: []);
+  }
+
+  /// `Delete Note`
+  String get deleteNote {
+    return Intl.message('Delete Note', name: 'deleteNote', desc: '', args: []);
+  }
+
+  /// `Are you sure you want to delete this note?`
+  String get deleteNoteConfirmation {
+    return Intl.message(
+      'Are you sure you want to delete this note?',
+      name: 'deleteNoteConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get delete {
+    return Intl.message('Delete', name: 'delete', desc: '', args: []);
+  }
+
+  /// `Note deleted successfully! 🎉`
+  String get NoteDeletedSuccessfully {
+    return Intl.message(
+      'Note deleted successfully! 🎉',
+      name: 'NoteDeletedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

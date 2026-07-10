@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:to_do_app/core/helpers/custom_dialog.dart';
 import 'package:to_do_app/notes_app/managers/cubit/view_cubit/view_cubit.dart';
-import 'package:to_do_app/notes_app/presentation/widgets/language_picker_button.dart';
 
 class CustomPopupMenuButton extends StatelessWidget {
   const CustomPopupMenuButton({super.key});
@@ -17,7 +17,7 @@ class CustomPopupMenuButton extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       color: const Color(0xFFFFEBDC),
       elevation: 3,
-      constraints: const BoxConstraints(minWidth: 80, maxWidth: 100),
+      constraints: const BoxConstraints(minWidth: 64, maxWidth: 74),
       onSelected: (value) {
         switch (value) {
           case 'change_theme':
@@ -26,10 +26,7 @@ class CustomPopupMenuButton extends StatelessWidget {
             context.read<ViewCubit>().toggleView();
             break;
           case 'language_picker':
-             showDialog(
-              context: context,
-              builder: (context) => const LanguagePickerDialog(),
-            );
+            CustomDialog.showLanguagePicker(context: context);
             break;
         }
       },

@@ -9,8 +9,13 @@
   "errorEmptyDesc": "Please write the note details!",
   "successAddNote": "Note added successfully! 🎉",
   "noteTitleHint": "Note Title...",
-"noteDetailsHint": "Write your note details here...",
-"failureMessage": "an error occured while saving note...",
-"save": "Save"
-
+  "noteDetailsHint": "Write your note details here...",
+  "failureMessage": "an error occured while saving note...",
+  "save": "Save",
+  "selectLanguage": "Select Language",
+  "cancel": "Cancel",
+  "deleteNote": "Delete Note",
+  "deleteNoteConfirmation": "Are you sure you want to delete this note?",
+  "delete": "Delete",
+  "NoteDeletedSuccessfully": "Note deleted successfully! 🎉"
 }
