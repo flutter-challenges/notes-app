@@ -2,31 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_app/notes_app/managers/cubit/locale_cubit/locale_cubit.dart';
 
-class LanguagePickerButton extends StatelessWidget {
-  const LanguagePickerButton({super.key});
+class LanguagePickerDialog extends StatelessWidget {
+  const LanguagePickerDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
     final currentLocale = Localizations.localeOf(context).languageCode;
 
-    return PopupMenuButton<String>(
-      icon: const Icon(Icons.translate_rounded, size: 26, color: Colors.black87),
-      tooltip: 'Change Language',
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
+    return AlertDialog(
+      title: const Text(
+        'Select Language / اختر اللغة',
+        textAlign: TextAlign.center,
+        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
       ),
-      onSelected: (String languageCode) {
-        context.read<LocaleCubit>().changeLanguage(languageCode);
-      },
-      itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-        _buildLanguageItem('ar', 'العربية', '🇪🇬', currentLocale),
-        _buildLanguageItem('en', 'English', '🇺🇸', currentLocale),
-        _buildLanguageItem('fr', 'Français', '🇫🇷', currentLocale),
-      ],
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      backgroundColor: const Color(0xFFFFEBDC), 
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _buildLanguageItem(context, 'ar', 'العربية', '🇪🇬', currentLocale),
+          const Divider(),
+          _buildLanguageItem(context, 'en', 'English', '🇺🇸', currentLocale),
+          const Divider(),
+          _buildLanguageItem(context, 'fr', 'Français', '🇫🇷', currentLocale),
+        ],
+      ),
     );
   }
 
-  PopupMenuItem<String> _buildLanguageItem(
+  Widget _buildLanguageItem(
+    BuildContext context,
     String code,
     String name,
     String flag,
@@ -34,24 +39,31 @@ class LanguagePickerButton extends StatelessWidget {
   ) {
     final bool isSelected = currentLocale == code;
 
-    return PopupMenuItem<String>(
-      value: code,
-      child: Row(
-        children: [
-          Text(flag, style: const TextStyle(fontSize: 18)),
-          const SizedBox(width: 12),
-          Text(
-            name,
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-              color: isSelected ? Colors.amber.shade800 : Colors.black87,
+    return InkWell(
+      onTap: () {
+        context.read<LocaleCubit>().changeLanguage(code);
+        Navigator.pop(context);
+      },
+      borderRadius: BorderRadius.circular(8),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+        child: Row(
+          children: [
+            Text(flag, style: const TextStyle(fontSize: 18)),
+            const SizedBox(width: 12),
+            Text(
+              name,
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                color: isSelected ? Colors.amber.shade800 : Colors.black87,
+              ),
             ),
-          ),
-          const Spacer(),
-          if (isSelected)
-            Icon(Icons.check_circle, size: 18, color: Colors.amber.shade800),
-        ],
+            const Spacer(),
+            if (isSelected)
+              Icon(Icons.check_circle, size: 18, color: Colors.amber.shade800),
+          ],
+        ),
       ),
     );
   }

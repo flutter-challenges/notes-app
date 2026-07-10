@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_app/notes_app/presentation/widgets/language_picker_button.dart';
 
 class CustomPopupMenuButton extends StatelessWidget {
   const CustomPopupMenuButton({super.key});
@@ -20,6 +21,12 @@ class CustomPopupMenuButton extends StatelessWidget {
           case 'change_theme':
             break;
           case 'toggle_view':
+            break;
+          case 'language_picker':
+             showDialog(
+              context: context,
+              builder: (context) => const LanguagePickerDialog(),
+            );
             break;
         }
       },
@@ -43,6 +50,13 @@ class CustomPopupMenuButton extends StatelessWidget {
               color: Colors.black87,
               size: 24,
             ),
+          ),
+        ),
+        const PopupMenuDivider(height: 1),
+        const PopupMenuItem<String>(
+          value: 'language_picker',
+          child: Center(
+            child: Icon(Icons.language, color: Colors.black87, size: 24),
           ),
         ),
       ],
