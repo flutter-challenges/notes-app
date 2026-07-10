@@ -31,8 +31,6 @@ class CustomAppBar extends StatelessWidget {
           icon: const Icon(Icons.search_sharp, size: 26, color: Colors.black87),
         ),
         
-        // const LanguagePickerButton(),
-        
         const CustomPopupMenuButton(),
         
         const SizedBox(width: 8),
