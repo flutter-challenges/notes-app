@@ -6,7 +6,6 @@ import 'package:to_do_app/notes_app/managers/cubit/add_note_bloc/add_note_bloc.d
 import 'package:to_do_app/notes_app/managers/cubit/delete_note/delete_note_cubit.dart';
 import 'package:to_do_app/notes_app/managers/cubit/show_all_notes_cubit/notes_cubit.dart';
 import 'package:to_do_app/notes_app/managers/cubit/update_note/update_note_cubit.dart';
-import 'package:to_do_app/notes_app/managers/cubit/view_cubit/view_cubit.dart';
 import 'package:to_do_app/notes_app/presentation/views/add_note_view.dart';
 import 'package:to_do_app/notes_app/presentation/views/edit_and_show_note_view.dart';
 import 'package:to_do_app/notes_app/presentation/views/notes_view.dart';
@@ -19,7 +18,6 @@ class AppRouter {
           providers: [
             BlocProvider(create: (context) => NotesCubit()..fetchAllNotes()),
             BlocProvider(create: (context) => DeleteNoteCubit()),
-            BlocProvider(create: (context) => ViewCubit()),
           ],
           child: const NotesView(),
         ),

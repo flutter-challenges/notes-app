@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_app/core/helpers/custom_dialog.dart';
+import 'package:to_do_app/notes_app/managers/cubit/theme_cubit/theme_cubit.dart';
 import 'package:to_do_app/notes_app/managers/cubit/view_cubit/view_cubit.dart';
 
 class CustomPopupMenuButton extends StatelessWidget {
@@ -21,6 +22,7 @@ class CustomPopupMenuButton extends StatelessWidget {
       onSelected: (value) {
         switch (value) {
           case 'change_theme':
+            context.read<ThemeCubit>().toggleTheme();
             break;
           case 'toggle_view':
             context.read<ViewCubit>().toggleView();
