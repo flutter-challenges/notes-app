@@ -12,7 +12,6 @@ class NoteItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color baseColor = Color(noteModel.color);
 
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),

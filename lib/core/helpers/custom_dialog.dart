@@ -5,7 +5,6 @@ import 'package:to_do_app/notes_app/managers/cubit/locale_cubit/locale_cubit.dar
 
 class CustomDialog {
   
-  // 1️⃣ الدالة الأولى: ديالوج التأكيد (القديم - زي ما هو لأمان بقية الأماكن)
   static void showConfirmation({
     required BuildContext context,
     String title = '',
@@ -23,7 +22,7 @@ class CustomDialog {
         return Dialog(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
           elevation: 10,
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           child: Padding(
             padding: const EdgeInsets.all(24.0),
             child: Column(
@@ -90,7 +89,6 @@ class CustomDialog {
     );
   }
 
-  // 2️⃣ الدالة الثانية: ديالوج اختيار اللغة (تم دمج مظهر الـ Dialog الموحد مع الـ Items)
   static void showLanguagePicker({required BuildContext context}) {
     final currentLocale = Localizations.localeOf(context).languageCode;
 
@@ -101,34 +99,32 @@ class CustomDialog {
         return Dialog(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
           elevation: 10,
-          backgroundColor: const Color(0xFFFFEBDC), // لونك الكريمي الرايق
+          backgroundColor:Theme.of(context).scaffoldBackgroundColor, 
           child: Padding(
             padding: const EdgeInsets.all(24.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // أيقونة علوية دائرية متناسقة مع لغة التصميم الموحدة بتاعتك
                 Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: Colors.amber.shade800.withOpacity(0.1),
+                    color:Colors.white.withOpacity(0.1),
                     shape: BoxShape.circle,
                   ),
-                  child: Icon(Icons.language_rounded, color: Colors.amber.shade800, size: 36),
+                  child: Icon(Icons.language_rounded, color: Theme.of(context).primaryColor, size: 36),
                 ),
                 const SizedBox(height: 20),
                 Text(
                   S.of(context).selectLanguage,
-                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF2C1B1B)),
+                  style:  TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color:Theme.of( context).textTheme.bodyLarge?.color),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 16),
                 
-                // قائمة اللغات مدمجة بالداخل ونظيفة
                 _buildLanguageItem(dialogContext, 'ar', 'العربية', '🇪🇬', currentLocale),
-                const Divider(height: 1, color: Colors.black12),
+                 Divider(height: 1, color:Theme.of(context).primaryColor),
                 _buildLanguageItem(dialogContext, 'en', 'English', '🇺🇸', currentLocale),
-                const Divider(height: 1, color: Colors.black12),
+                 Divider(height: 1, color:Theme.of(context).primaryColor),
                 _buildLanguageItem(dialogContext, 'fr', 'Français', '🇫🇷', currentLocale),
               ],
             ),
@@ -138,7 +134,6 @@ class CustomDialog {
     );
   }
 
-  // دالة مساعدة خاصة ببناء عناصر اللغة داخل الديالوج
   static Widget _buildLanguageItem(
     BuildContext context,
     String code,
@@ -151,7 +146,7 @@ class CustomDialog {
     return InkWell(
       onTap: () {
         context.read<LocaleCubit>().changeLanguage(code);
-        Navigator.pop(context); // قفل الديالوج مباشرة بعد الاختيار
+        Navigator.pop(context); 
       },
       borderRadius: BorderRadius.circular(12),
       child: Padding(
@@ -165,12 +160,12 @@ class CustomDialog {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                color: isSelected ? Colors.amber.shade900 : Colors.black87,
+                color: isSelected ? Theme.of(context).primaryColor : Theme.of(context).textTheme.bodyMedium?.color,
               ),
             ),
             const Spacer(),
             if (isSelected)
-              Icon(Icons.check_circle_rounded, size: 20, color: Colors.amber.shade900),
+              Icon(Icons.check_circle_rounded, size: 20, color: Theme.of(context).primaryColor),
           ],
         ),
       ),
