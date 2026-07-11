@@ -1,9 +1,14 @@
 part of 'add_note_bloc.dart';
 
 @immutable
-sealed class AddNoteEvent {}
+abstract class AddNoteEvent {}
 
 class AddNoteSubmittedEvent extends AddNoteEvent {
-  final NoteModel note;
-  AddNoteSubmittedEvent(this.note);
+  final List<NoteModel> notes;
+  final String boxName; 
+
+  AddNoteSubmittedEvent({
+    required this.notes,
+    required this.boxName,
+  });
 }

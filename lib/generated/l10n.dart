@@ -199,10 +199,10 @@ class S {
     return Intl.message('Delete', name: 'delete', desc: '', args: []);
   }
 
-  /// `Note deleted successfully! 🎉`
+  /// `Note deleted successfully`
   String get NoteDeletedSuccessfully {
     return Intl.message(
-      'Note deleted successfully! 🎉',
+      'Note deleted successfully',
       name: 'NoteDeletedSuccessfully',
       desc: '',
       args: [],

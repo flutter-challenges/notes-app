@@ -171,4 +171,90 @@ class CustomDialog {
       ),
     );
   }
+
+  static void showMenuOptions({
+    required BuildContext context,
+    required VoidCallback onChangeTheme,
+    required VoidCallback onToggleView,
+    required VoidCallback onLanguageTap,
+  }) {
+    showGeneralDialog(
+      context: context,
+      barrierDismissible: true,
+      barrierLabel: 'Dismiss',
+      barrierColor: Colors.black.withOpacity(0.15),
+      transitionDuration: const Duration(milliseconds: 150),
+      pageBuilder: (context, animation, secondaryAnimation) {
+        final Color iconColor = Colors.white;
+
+        return Center(
+          child: Material(
+            color: Colors.transparent,
+            child: Container(
+              constraints: const BoxConstraints(minWidth: 64, maxWidth: 74),
+              decoration: BoxDecoration(
+                color: Theme.of(context).appBarTheme.backgroundColor,
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 20,
+                    offset: const Offset(0, 8),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _buildMenuItem(
+                    icon: Icons.palette_outlined,
+                    color: iconColor,
+                    onTap: () {
+                      Navigator.pop(context);
+                      onChangeTheme();
+                    },
+                  ),
+                  const PopupMenuDivider(height: 1),
+                  _buildMenuItem(
+                    icon: Icons.dashboard_customize_outlined,
+                    color: iconColor,
+                    onTap: () {
+                      Navigator.pop(context);
+                      onToggleView();
+                    },
+                  ),
+                  const PopupMenuDivider(height: 1),
+                  _buildMenuItem(
+                    icon: Icons.language,
+                    color: iconColor,
+                    onTap: () {
+                      Navigator.pop(context);
+                      onLanguageTap();
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+  }
+
+   Widget _buildMenuItem({
+    required IconData icon,
+    required Color? color,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        height: 52,
+        alignment: Alignment.center,
+        child: Icon(icon, color: color, size: 24),
+      ),
+    );
+  
 }

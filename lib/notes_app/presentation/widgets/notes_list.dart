@@ -32,14 +32,14 @@ class NotesList extends StatelessWidget {
                     Icon(
                       Icons.note_alt_outlined,
                       size: 80,
-                      color: Colors.grey.shade400,
+                      color: Theme.of(context).appBarTheme.iconTheme?.color,
                     ),
                     const SizedBox(height: 16),
                     Text(
                       S.of(context).noNotesYet,
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.grey.shade500,
+                        color: Theme.of(context).textTheme.titleLarge?.color,
                         fontWeight: FontWeight.w500,
                       ),
                     ),

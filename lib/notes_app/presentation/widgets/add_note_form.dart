@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:to_do_app/core/helpers/constants.dart';
 import 'package:to_do_app/core/helpers/custom_middel_snack_bar.dart';
 import 'package:to_do_app/generated/l10n.dart';
 import 'package:to_do_app/notes_app/data/models/note_model.dart';
@@ -55,7 +56,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
       color: NoteModel.noteColors[2].toARGB32(),
     );
 
-    context.read<AddNoteBloc>().add(AddNoteSubmittedEvent(note));
+    context.read<AddNoteBloc>().add(AddNoteSubmittedEvent(notes:[note], boxName:AppConstants.kNotesBox));
   }
 
   @override

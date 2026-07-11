@@ -17,5 +17,5 @@
   "deleteNote": "حذف الملاحظة",
   "deleteNoteConfirmation": "هل تريد حذف هذه الملاحظة؟",
   "delete": "حذف",
-  "noteDeletedSuccessfully": "تم حذف الملاحظة بنجاح! 🎉"
+  "noteDeletedSuccessfully": "تم حذف الملاحظة بنجاح"
 }
