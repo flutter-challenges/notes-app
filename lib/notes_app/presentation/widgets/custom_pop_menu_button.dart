@@ -9,13 +9,13 @@ class CustomPopupMenuButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton<String>(
-      icon: const Icon(
+      icon:  Icon(
         Icons.more_vert_rounded,
         size: 26,
-        color: Colors.black87,
+        color:Theme.of(context).appBarTheme.iconTheme?.color,
       ),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      color: const Color(0xFFFFEBDC),
+      color: Theme.of(context).appBarTheme.backgroundColor,
       elevation: 3,
       constraints: const BoxConstraints(minWidth: 64, maxWidth: 74),
       onSelected: (value) {
@@ -31,32 +31,32 @@ class CustomPopupMenuButton extends StatelessWidget {
         }
       },
       itemBuilder: (BuildContext context) => [
-        const PopupMenuItem<String>(
+         PopupMenuItem<String>(
           value: 'change_theme',
           child: Center(
             child: Icon(
               Icons.palette_outlined,
-              color: Colors.black87,
+              color: Theme.of(context).appBarTheme.iconTheme?.color,
               size: 24,
             ),
           ),
         ),
         const PopupMenuDivider(height: 1),
-        const PopupMenuItem<String>(
+         PopupMenuItem<String>(
           value: 'toggle_view',
           child: Center(
             child: Icon(
               Icons.dashboard_customize_outlined,
-              color: Colors.black87,
+              color: Theme.of(context).appBarTheme.iconTheme?.color,
               size: 24,
             ),
           ),
         ),
         const PopupMenuDivider(height: 1),
-        const PopupMenuItem<String>(
+         PopupMenuItem<String>(
           value: 'language_picker',
           child: Center(
-            child: Icon(Icons.language, color: Colors.black87, size: 24),
+            child: Icon(Icons.language, color: Theme.of(context).appBarTheme.iconTheme?.color, size: 24),
           ),
         ),
       ],

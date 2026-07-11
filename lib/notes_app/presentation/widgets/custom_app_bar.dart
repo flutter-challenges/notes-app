@@ -10,24 +10,24 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      backgroundColor: const Color(0xFFFFEBDC), 
+      backgroundColor: Theme.of(context).appBarTheme.backgroundColor, 
       floating: true,
       snap: true, 
       elevation: 0,
       centerTitle: false,
       title: Text(
         S.of(context).myNotes,
-        style: const TextStyle(
+        style:  TextStyle(
           fontWeight: FontWeight.w800, 
           fontSize: 26,
-          color: Color(0xFF2C1B1B), 
+          color: Theme.of(context).appBarTheme.iconTheme?.color,
           letterSpacing: 0.5,
         ),
       ),
       actions: [
         IconButton(
           onPressed: () {},
-          icon: const Icon(Icons.search_sharp, size: 26, color: Colors.black87),
+          icon:  Icon(Icons.search_sharp, size: 26, color:Theme.of(context).appBarTheme.iconTheme?.color),
         ),
         
         const CustomPopupMenuButton(),

@@ -15,22 +15,22 @@ class AddNoteView extends StatelessWidget {
     final isArabic = Localizations.localeOf(context).languageCode == 'ar';
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF9F9F9),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.transparent,
+        backgroundColor:Theme.of(context).appBarTheme.backgroundColor,
         leading: IconButton(
           icon: AnimatedRotation(
             turns: isArabic ? 0 : 0.5,
             duration: Duration.zero,
-            child: const Icon(Icons.arrow_back_ios_new, color: Colors.black87),
+            child:  Icon(Icons.arrow_back_ios_new, color:Theme.of(context).appBarTheme.iconTheme?.color),
           ),
           onPressed: () => context.pop(),
         ),
         title: Text(
           S.of(context).newNote,
-          style: const TextStyle(
-            color: Colors.black87,
+          style:  TextStyle(
+            color: Theme.of(context).textTheme.titleLarge?.color,
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),

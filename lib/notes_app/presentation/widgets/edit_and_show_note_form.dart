@@ -26,7 +26,7 @@ class EditAndShowNoteForm extends StatelessWidget {
         children: [
           Text(
             S.of(context).lastEdit(noteModel.date.toFormattedString(context)),
-            style: const TextStyle(color: Colors.black38, fontSize: 14, fontWeight: FontWeight.w500),
+            style:  TextStyle(color: Theme.of(context).textTheme.bodyMedium?.color, fontSize: 14, fontWeight: FontWeight.w500),
           ),
           const SizedBox(height: 16),
           CustomNoteTextField(

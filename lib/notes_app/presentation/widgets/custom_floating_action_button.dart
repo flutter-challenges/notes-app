@@ -9,7 +9,7 @@ class CustomFloatingActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      backgroundColor: Colors.amber.shade700,
+      backgroundColor: Theme.of(context).floatingActionButtonTheme.backgroundColor,
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       onPressed: () {

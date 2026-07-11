@@ -10,6 +10,7 @@ class NotesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         floatingActionButton: CustomFloatingActionButton(),
         body: CustomScrollView(
           slivers: [

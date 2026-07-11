@@ -13,7 +13,7 @@ class CustomButton extends StatelessWidget {
           padding: const EdgeInsets.all(16.0),
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.amber.shade700,
+              backgroundColor:Theme.of(context).primaryColor,
               minimumSize: const Size(double.infinity, 50),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             ),
@@ -28,7 +28,7 @@ class CustomButton extends StatelessWidget {
                     )
                   : Text(
                       S.of(context).save , 
-                      style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                      style:  TextStyle(color: Theme.of(context).textTheme.titleLarge?.color, fontSize: 18, fontWeight: FontWeight.bold),
                     ),
             ),
           ),

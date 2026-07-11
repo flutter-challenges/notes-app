@@ -73,25 +73,25 @@ class _EditAndShowNoteViewState extends State<EditAndShowNoteView> {
 
         return SafeArea(
           child: Scaffold(
-            backgroundColor: const Color(0xFFF9F9F9),
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
             appBar: AppBar(
               elevation: 0,
-              backgroundColor: Colors.transparent,
+              backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
               leading: IconButton(
                 icon: AnimatedRotation(
                   turns: isRtl ? 0 : 0.5,
                   duration: Duration.zero,
-                  child: const Icon(
+                  child:  Icon(
                     Icons.arrow_back_ios_new,
-                    color: Colors.black87,
+                    color: Theme.of(context).appBarTheme.iconTheme?.color,
                   ),
                 ),
                 onPressed: () => context.pop(),
               ),
               title: Text(
                 S.of(context).editNote,
-                style: const TextStyle(
-                  color: Colors.black87,
+                style:  TextStyle(
+                  color: Theme.of(context).textTheme.titleLarge?.color,
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                 ),
@@ -111,13 +111,13 @@ class _EditAndShowNoteViewState extends State<EditAndShowNoteView> {
                           child: isSavingProcess
                               ? Icon(
                                   Icons.check_circle,
-                                  color: Colors.green.shade600,
+                                  color: Theme.of(context).appBarTheme.iconTheme?.color,
                                   size: 30,
                                   key: const ValueKey('done'),
                                 )
                               : Icon(
                                   Icons.check_circle_outline,
-                                  color: Colors.amber.shade700,
+                                  color: Theme.of(context).appBarTheme.iconTheme?.color,
                                   size: 30,
                                   key: const ValueKey('edit'),
                                 ),

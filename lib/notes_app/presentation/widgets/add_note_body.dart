@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/generated/l10n.dart';
 import 'package:to_do_app/notes_app/presentation/widgets/custom_note_text_field.dart';
-import 'package:to_do_app/notes_app/presentation/widgets/media_action_button.dart';
 
 class AddNoteBody extends StatelessWidget {
   final TextEditingController titleController;
@@ -36,54 +35,6 @@ class AddNoteBody extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-        ),
-
-        Container(
-          padding: EdgeInsets.only(
-            left: 16,
-            right: 16,
-            top: 12,
-            bottom: MediaQuery.of(context).viewInsets.bottom + 12,
-          ),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.1),
-                spreadRadius: 1,
-                blurRadius: 10,
-                offset: const Offset(0, -3), 
-              ),
-            ],
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
-          ),
-          child: Row(
-            children: [
-              const Text(
-                "إضافة إلى الملاحظة:",
-                style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w500),
-              ),
-              const Spacer(),
-
-              MediaActionWidget(
-                icon: Icons.image_rounded,
-                color: Colors.green,
-                onTap: () {},
-              ),
-
-              MediaActionWidget(
-                icon: Icons.video_collection_rounded,
-                color: Colors.redAccent,
-                onTap: () {},
-              ),
-
-              MediaActionWidget(
-                icon: Icons.mic_rounded,
-                color: Colors.blue,
-                onTap: () {},
-              ),
-            ],
           ),
         ),
       ],

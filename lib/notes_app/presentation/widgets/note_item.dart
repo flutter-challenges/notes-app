@@ -16,7 +16,7 @@ class NoteItem extends StatelessWidget {
 
     return Card(
       margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
-      color: baseColor,
+      color: Theme.of(context).primaryColor,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       child: InkWell(
         onTap: () => context.pushNamed(
@@ -35,7 +35,7 @@ class NoteItem extends StatelessWidget {
                   Expanded(
                     child: Text(
                       noteModel.title,
-                      style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87),
+                      style:  TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color:Theme.of(context).textTheme.titleLarge?.color),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -47,7 +47,7 @@ class NoteItem extends StatelessWidget {
               const SizedBox(height: 8),
               Text(
                 noteModel.subTitle,
-                style: TextStyle(fontSize: 15, color: Colors.black.withOpacity(0.65), height: 1.4),
+                style: TextStyle(fontSize: 15, color:Theme.of(context).textTheme.titleMedium?.color, height: 1.4),
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
               ),
