@@ -13,10 +13,8 @@ class NotesCubit extends Cubit<NotesState> {
     await Future.delayed(const Duration(seconds: 2));
     try {
       var notesBox = Hive.box<NoteModel>(AppConstants.kNotesBox);
-
       List<NoteModel> notes = notesBox.values.toList();
       notes.sort((a, b) => b.date.compareTo(a.date));
-
       emit(NotesSuccess(notes));
     } catch (e) {
       emit(NotesSuccess([]));

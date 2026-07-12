@@ -1,11 +1,14 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart'; 
+import 'package:to_do_app/core/helpers/constants.dart';
 import 'package:to_do_app/notes_app/data/models/note_model.dart';
 
 part 'delete_note_state.dart';
 
 class DeleteNoteCubit extends Cubit<DeleteNoteState> {
   DeleteNoteCubit() : super(DeleteNoteInitial());
+
 
   void deleteNote({required NoteModel note}) async {
     emit(DeleteNoteLoading());
@@ -17,20 +20,18 @@ class DeleteNoteCubit extends Cubit<DeleteNoteState> {
     }
   }
 
-  void deleteMultipleNotes({required List<NoteModel> notes}) async {
-    if (notes.isEmpty) return;
+  void deleteMultipleNotes({required Set<dynamic> keysToDelete}) async {
+    if (keysToDelete.isEmpty) return;
 
     emit(DeleteNoteLoading());
     try {
-      final List<dynamic> keysToDelete = notes.map((note) => note.key).toList();
+      final box = Hive.box<NoteModel>(AppConstants.kNotesBox);
 
-      final box = notes.first.box;
-
-      if (box != null) {
+      if (box.isOpen) {
         await box.deleteAll(keysToDelete);
         emit(DeleteNoteSuccess());
       } else {
-        emit(DeleteNoteFailure("البوكس غير موجود أو مغلق"));
+        emit(DeleteNoteFailure("البوكس مغلق أو غير موجود"));
       }
     } catch (e) {
       emit(DeleteNoteFailure(e.toString()));

@@ -5,6 +5,7 @@ import 'package:to_do_app/notes_app/managers/cubit/locale_cubit/locale_cubit.dar
 
 class CustomDialog {
   
+  
   static void showConfirmation({
     required BuildContext context,
     String title = '',
@@ -240,9 +241,8 @@ class CustomDialog {
       },
     );
   }
-  }
 
-   Widget _buildMenuItem({
+  static Widget _buildMenuItem({
     required IconData icon,
     required Color? color,
     required VoidCallback onTap,
@@ -256,5 +256,111 @@ class CustomDialog {
         child: Icon(icon, color: color, size: 24),
       ),
     );
+  }
+
+  static void showSelectionMenuOptions({
+    required BuildContext context,
+    required VoidCallback onDeleteTap,
+    required VoidCallback onMoveToPrivateTap,
+  }) {
+    showGeneralDialog(
+      context: context,
+      barrierDismissible: true,
+      barrierLabel: 'DismissSelectionMenu',
+      barrierColor: Colors.black.withOpacity(0.2), 
+      transitionDuration: const Duration(milliseconds: 180),
+      transitionBuilder: (context, animation, secondaryAnimation, child) {
+        return ScaleTransition(
+          scale: CurvedAnimation(parent: animation, curve: Curves.easeOutBack),
+          child: child,
+        );
+      },
+      pageBuilder: (context, animation, secondaryAnimation) {
+        final Color? iconColor = Theme.of(context).appBarTheme.iconTheme?.color;
+        final Color? textColor = Theme.of(context).textTheme.bodyLarge?.color;
+
+        return Center(
+          child: Material(
+            color: Colors.transparent,
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.75,
+              constraints: const BoxConstraints(maxWidth: 280),
+              decoration: BoxDecoration(
+                color: Theme.of(context).scaffoldBackgroundColor,
+                borderRadius: BorderRadius.circular(24), 
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.15),
+                    blurRadius: 25,
+                    offset: const Offset(0, 10),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  _buildSelectionMenuItem(
+                    context: context,
+                    icon: Icons.delete_outline_rounded,
+                    title: S.of(context).delete,
+                    iconColor: iconColor,
+                    textColor: Theme.of(context).textTheme.titleLarge?.color,
+                    onTap: () {
+                      Navigator.pop(context);
+                      onDeleteTap();
+                    },
+                  ),
+                  Divider(height: 1, color: Theme.of(context).primaryColor.withOpacity(0.2)),
+                  _buildSelectionMenuItem(
+                    context: context,
+                    icon: Icons.lock_outline_rounded,
+                    title:  'Move to Private',
+                    iconColor: iconColor,
+                    textColor:  Theme.of(context).textTheme.titleLarge?.color,
+                    onTap: () {
+                      Navigator.pop(context);
+                      onMoveToPrivateTap();
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  static Widget _buildSelectionMenuItem({
+    required BuildContext context,
+    required IconData icon,
+    required String title,
+    required Color? iconColor,
+    required Color? textColor,
+    required VoidCallback onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(16),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
+        child: Row(
+          children: [
+            Icon(icon, color: iconColor, size: 24),
+            const SizedBox(width: 14),
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: textColor,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+  
   
 }
