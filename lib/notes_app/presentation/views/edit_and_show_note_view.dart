@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:to_do_app/core/helpers/extension.dart';
 import 'package:to_do_app/generated/l10n.dart';
 import 'package:to_do_app/notes_app/data/models/note_model.dart';
+import 'package:to_do_app/notes_app/managers/cubit/box_type/box_type_cubit.dart';
 import 'package:to_do_app/notes_app/managers/cubit/show_all_notes_cubit/notes_cubit.dart';
 import 'package:to_do_app/notes_app/managers/cubit/update_note/update_note_cubit.dart';
 import 'package:to_do_app/notes_app/managers/cubit/update_note/update_note_state.dart';
@@ -51,6 +52,7 @@ class _EditAndShowNoteViewState extends State<EditAndShowNoteView> {
 
   void _onSavePressed() {
     context.read<UpdateNoteCubit>().updateNote(
+      boxNameType: context.read<BoxTypeCubit>().state.boxName,
       note: widget.noteModel,
       title: _titleController.text.trim(),
       subTitle: _desController.text.trim(),
@@ -60,11 +62,10 @@ class _EditAndShowNoteViewState extends State<EditAndShowNoteView> {
   @override
   Widget build(BuildContext context) {
     final isRtl = Directionality.of(context) == TextDirection.rtl;
-
     return BlocConsumer<UpdateNoteCubit, UpdateNoteState>(
       listener: (context, state) {
         if (state is UpdateNoteSuccess) {
-          context.read<NotesCubit>().fetchAllNotes();
+          context.read<NotesCubit>().fetchAllNotes(boxNameType: context.read<BoxTypeCubit>().state.boxName);
           context.pop();
         }
       },

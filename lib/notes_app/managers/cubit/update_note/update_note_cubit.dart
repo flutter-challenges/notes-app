@@ -11,6 +11,7 @@ class UpdateNoteCubit extends Cubit<UpdateNoteState> {
     required NoteModel note,
     required String title,
     required String subTitle,
+    required String boxNameType,
   }) async {
     emit(UpdateNoteLoading());
 
@@ -21,7 +22,7 @@ class UpdateNoteCubit extends Cubit<UpdateNoteState> {
         date: DateTime.now(),
       );
 
-      final box = Hive.box<NoteModel>(AppConstants.kNotesBox);
+      final box = Hive.box<NoteModel>(boxNameType);
 
       await box.put(note.key, updatedNote);
 

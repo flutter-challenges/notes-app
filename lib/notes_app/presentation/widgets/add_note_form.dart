@@ -5,6 +5,7 @@ import 'package:to_do_app/core/helpers/custom_middel_snack_bar.dart';
 import 'package:to_do_app/generated/l10n.dart';
 import 'package:to_do_app/notes_app/data/models/note_model.dart';
 import 'package:to_do_app/notes_app/managers/cubit/add_note_bloc/add_note_bloc.dart';
+import 'package:to_do_app/notes_app/managers/cubit/box_type/box_type_cubit.dart';
 import 'package:to_do_app/notes_app/presentation/widgets/custom_button.dart';
 import 'add_note_body.dart';
 
@@ -56,7 +57,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
       color: NoteModel.noteColors[2].toARGB32(),
     );
 
-    context.read<AddNoteBloc>().add(AddNoteSubmittedEvent(notes:[note], boxName:AppConstants.kNotesBox));
+    context.read<AddNoteBloc>().add(AddNoteSubmittedEvent(notes:[note], boxNameType: context.read<BoxTypeCubit>().state.boxName));
   }
 
   @override

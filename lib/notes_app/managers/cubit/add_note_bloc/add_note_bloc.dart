@@ -24,7 +24,7 @@ class AddNoteBloc extends Bloc<AddNoteEvent, AddNoteState> {
     await Future.delayed(const Duration(seconds: 1)); 
     
     try {
-      final targetBoxName = event.boxName ;
+      final targetBoxName = event.boxNameType ;
       var notesBox = Hive.box<NoteModel>(targetBoxName);
       
       await notesBox.addAll(event.notes);

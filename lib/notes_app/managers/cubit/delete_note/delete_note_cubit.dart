@@ -20,12 +20,12 @@ class DeleteNoteCubit extends Cubit<DeleteNoteState> {
     }
   }
 
-  void deleteMultipleNotes({required Set<dynamic> keysToDelete}) async {
+  void deleteMultipleNotes({required Set<dynamic> keysToDelete , required String boxNameType}) async {
     if (keysToDelete.isEmpty) return;
 
     emit(DeleteNoteLoading());
     try {
-      final box = Hive.box<NoteModel>(AppConstants.kNotesBox);
+      final box = Hive.box<NoteModel>(boxNameType);
 
       if (box.isOpen) {
         await box.deleteAll(keysToDelete);

@@ -4,6 +4,7 @@ import 'package:to_do_app/core/helpers/custom_dialog.dart';
 import 'package:to_do_app/core/helpers/custom_snack_bar.dart';
 import 'package:to_do_app/generated/l10n.dart';
 import 'package:to_do_app/notes_app/data/models/note_model.dart';
+import 'package:to_do_app/notes_app/managers/cubit/box_type/box_type_cubit.dart';
 import 'package:to_do_app/notes_app/managers/cubit/delete_note/delete_note_cubit.dart';
 import 'package:to_do_app/notes_app/managers/cubit/show_all_notes_cubit/notes_cubit.dart';
 
@@ -16,7 +17,7 @@ class DeleteButton extends StatelessWidget {
     return BlocConsumer<DeleteNoteCubit, DeleteNoteState>(
       listener: (context, state) {
         if (state is DeleteNoteSuccess) {
-          context.read<NotesCubit>().fetchAllNotes();
+          context.read<NotesCubit>().fetchAllNotes(boxNameType: context.read<BoxTypeCubit>().state.boxName);
           CustomSnackBar.show(context, message: S.of(context).NoteDeletedSuccessfully, type: SnackBarType.success);
         }
       },

@@ -5,10 +5,7 @@ abstract class AddNoteEvent {}
 
 class AddNoteSubmittedEvent extends AddNoteEvent {
   final List<NoteModel> notes;
-  final String boxName; 
+  final String boxNameType;
 
-  AddNoteSubmittedEvent({
-    required this.notes,
-    required this.boxName,
-  });
+  AddNoteSubmittedEvent({required this.notes, required this.boxNameType});
 }

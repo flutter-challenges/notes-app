@@ -4,6 +4,7 @@ import 'package:to_do_app/core/helpers/custom_middel_snack_bar.dart';
 import 'package:to_do_app/core/helpers/extension.dart';
 import 'package:to_do_app/generated/l10n.dart';
 import 'package:to_do_app/notes_app/managers/cubit/add_note_bloc/add_note_bloc.dart';
+import 'package:to_do_app/notes_app/managers/cubit/box_type/box_type_cubit.dart';
 import 'package:to_do_app/notes_app/managers/cubit/show_all_notes_cubit/notes_cubit.dart';
 import 'package:to_do_app/notes_app/presentation/widgets/add_note_form.dart';
 
@@ -46,7 +47,7 @@ class AddNoteView extends StatelessWidget {
             );
           }
           if (state is AddNoteSuccess) {
-            context.read<NotesCubit>().fetchAllNotes();
+            context.read<NotesCubit>().fetchAllNotes(boxNameType: context.read<BoxTypeCubit>().state.boxName);
             context.pop();
             CustomMiddleSnackBar.show(
               context, 

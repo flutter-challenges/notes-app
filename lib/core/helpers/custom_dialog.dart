@@ -4,8 +4,6 @@ import 'package:to_do_app/generated/l10n.dart';
 import 'package:to_do_app/notes_app/managers/cubit/locale_cubit/locale_cubit.dart';
 
 class CustomDialog {
-  
-  
   static void showConfirmation({
     required BuildContext context,
     String title = '',
@@ -21,7 +19,9 @@ class CustomDialog {
       barrierDismissible: true,
       builder: (dialogContext) {
         return Dialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
           elevation: 10,
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           child: Padding(
@@ -40,13 +40,21 @@ class CustomDialog {
                 const SizedBox(height: 20),
                 Text(
                   title,
-                  style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black87),
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black87,
+                  ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 12),
                 Text(
                   content,
-                  style: TextStyle(fontSize: 15, color: Colors.black.withOpacity(0.6), height: 1.4),
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.black.withOpacity(0.6),
+                    height: 1.4,
+                  ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 24),
@@ -58,9 +66,17 @@ class CustomDialog {
                         style: OutlinedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(vertical: 14),
                           side: BorderSide(color: Colors.grey.shade300),
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(14),
+                          ),
                         ),
-                        child: Text(cancelButtonText, style: const TextStyle(color: Colors.grey, fontWeight: FontWeight.bold)),
+                        child: Text(
+                          cancelButtonText,
+                          style: const TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
                     const SizedBox(width: 12),
@@ -75,9 +91,17 @@ class CustomDialog {
                           foregroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(vertical: 14),
                           elevation: 0,
-                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(14),
+                          ),
                         ),
-                        child: Text(confirmText, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+                        child: Text(
+                          confirmText,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -98,9 +122,11 @@ class CustomDialog {
       barrierDismissible: true,
       builder: (dialogContext) {
         return Dialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
           elevation: 10,
-          backgroundColor:Theme.of(context).scaffoldBackgroundColor, 
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           child: Padding(
             padding: const EdgeInsets.all(24.0),
             child: Column(
@@ -109,24 +135,50 @@ class CustomDialog {
                 Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color:Colors.white.withOpacity(0.1),
+                    color: Colors.white.withOpacity(0.1),
                     shape: BoxShape.circle,
                   ),
-                  child: Icon(Icons.language_rounded, color: Theme.of(context).primaryColor, size: 36),
+                  child: Icon(
+                    Icons.language_rounded,
+                    color: Theme.of(context).primaryColor,
+                    size: 36,
+                  ),
                 ),
                 const SizedBox(height: 20),
                 Text(
                   S.of(context).selectLanguage,
-                  style:  TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color:Theme.of( context).textTheme.bodyLarge?.color),
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).textTheme.bodyLarge?.color,
+                  ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 16),
-                
-                _buildLanguageItem(dialogContext, 'ar', 'العربية', '🇪🇬', currentLocale),
-                 Divider(height: 1, color:Theme.of(context).primaryColor),
-                _buildLanguageItem(dialogContext, 'en', 'English', '🇺🇸', currentLocale),
-                 Divider(height: 1, color:Theme.of(context).primaryColor),
-                _buildLanguageItem(dialogContext, 'fr', 'Français', '🇫🇷', currentLocale),
+
+                _buildLanguageItem(
+                  dialogContext,
+                  'ar',
+                  'العربية',
+                  '🇪🇬',
+                  currentLocale,
+                ),
+                Divider(height: 1, color: Theme.of(context).primaryColor),
+                _buildLanguageItem(
+                  dialogContext,
+                  'en',
+                  'English',
+                  '🇺🇸',
+                  currentLocale,
+                ),
+                Divider(height: 1, color: Theme.of(context).primaryColor),
+                _buildLanguageItem(
+                  dialogContext,
+                  'fr',
+                  'Français',
+                  '🇫🇷',
+                  currentLocale,
+                ),
               ],
             ),
           ),
@@ -147,7 +199,7 @@ class CustomDialog {
     return InkWell(
       onTap: () {
         context.read<LocaleCubit>().changeLanguage(code);
-        Navigator.pop(context); 
+        Navigator.pop(context);
       },
       borderRadius: BorderRadius.circular(12),
       child: Padding(
@@ -161,12 +213,18 @@ class CustomDialog {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                color: isSelected ? Theme.of(context).primaryColor : Theme.of(context).textTheme.bodyMedium?.color,
+                color: isSelected
+                    ? Theme.of(context).primaryColor
+                    : Theme.of(context).textTheme.bodyMedium?.color,
               ),
             ),
             const Spacer(),
             if (isSelected)
-              Icon(Icons.check_circle_rounded, size: 20, color: Theme.of(context).primaryColor),
+              Icon(
+                Icons.check_circle_rounded,
+                size: 20,
+                color: Theme.of(context).primaryColor,
+              ),
           ],
         ),
       ),
@@ -175,9 +233,11 @@ class CustomDialog {
 
   static void showMenuOptions({
     required BuildContext context,
+    required bool isPrivateMode, 
     required VoidCallback onChangeTheme,
     required VoidCallback onToggleView,
     required VoidCallback onLanguageTap,
+    required VoidCallback onToggleNotesType, 
   }) {
     showGeneralDialog(
       context: context,
@@ -233,6 +293,16 @@ class CustomDialog {
                       onLanguageTap();
                     },
                   ),
+                  const PopupMenuDivider(height: 1),
+                  
+                  _buildMenuItem(
+                    icon: isPrivateMode ? Icons.public_rounded : Icons.lock_outline_rounded,
+                    color: iconColor,
+                    onTap: () {
+                      Navigator.pop(context);
+                      onToggleNotesType(); 
+                    },
+                  ),
                 ],
               ),
             ),
@@ -267,7 +337,7 @@ class CustomDialog {
       context: context,
       barrierDismissible: true,
       barrierLabel: 'DismissSelectionMenu',
-      barrierColor: Colors.black.withOpacity(0.2), 
+      barrierColor: Colors.black.withOpacity(0.2),
       transitionDuration: const Duration(milliseconds: 180),
       transitionBuilder: (context, animation, secondaryAnimation, child) {
         return ScaleTransition(
@@ -287,7 +357,7 @@ class CustomDialog {
               constraints: const BoxConstraints(maxWidth: 280),
               decoration: BoxDecoration(
                 color: Theme.of(context).scaffoldBackgroundColor,
-                borderRadius: BorderRadius.circular(24), 
+                borderRadius: BorderRadius.circular(24),
                 boxShadow: [
                   BoxShadow(
                     color: Colors.black.withOpacity(0.15),
@@ -310,13 +380,16 @@ class CustomDialog {
                       onDeleteTap();
                     },
                   ),
-                  Divider(height: 1, color: Theme.of(context).primaryColor.withOpacity(0.2)),
+                  Divider(
+                    height: 1,
+                    color: Theme.of(context).primaryColor.withOpacity(0.2),
+                  ),
                   _buildSelectionMenuItem(
                     context: context,
                     icon: Icons.lock_outline_rounded,
-                    title:  'Move to Private',
+                    title: 'Move to Private',
                     iconColor: iconColor,
-                    textColor:  Theme.of(context).textTheme.titleLarge?.color,
+                    textColor: Theme.of(context).textTheme.titleLarge?.color,
                     onTap: () {
                       Navigator.pop(context);
                       onMoveToPrivateTap();
@@ -361,6 +434,4 @@ class CustomDialog {
       ),
     );
   }
-  
-  
 }
