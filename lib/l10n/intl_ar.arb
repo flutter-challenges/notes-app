@@ -17,5 +17,8 @@
   "deleteNote": "حذف الملاحظة",
   "deleteNoteConfirmation": "هل تريد حذف هذه الملاحظة؟",
   "delete": "حذف",
-  "noteDeletedSuccessfully": "تم حذف الملاحظة بنجاح"
+  "noteDeletedSuccessfully": "تم حذف الملاحظة بنجاح",
+  "moveToPrivate": "نقل إلى الخاص",
+  "moveToPublic": "نقل إلى العام",
+  "privateNotes": "ملاحظات خاصة"
 }

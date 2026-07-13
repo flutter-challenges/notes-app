@@ -44,6 +44,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "حدث خطأ أثناء حفظ الملاحظة",
     ),
     "lastEdit": m0,
+    "moveToPrivate": MessageLookupByLibrary.simpleMessage("نقل إلى الخاص"),
+    "moveToPublic": MessageLookupByLibrary.simpleMessage("نقل إلى العام"),
     "myNotes": MessageLookupByLibrary.simpleMessage("ملاحظاتي"),
     "newNote": MessageLookupByLibrary.simpleMessage("ملاحظة جديدة"),
     "noNotesYet": MessageLookupByLibrary.simpleMessage(
@@ -53,6 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "اكتب تفاصيل ملاحظتك هنا...",
     ),
     "noteTitleHint": MessageLookupByLibrary.simpleMessage("عنوان الملاحظة..."),
+    "privateNotes": MessageLookupByLibrary.simpleMessage("ملاحظات خاصة"),
     "save": MessageLookupByLibrary.simpleMessage("حفظ"),
     "selectLanguage": MessageLookupByLibrary.simpleMessage("اختيار اللغة"),
     "successAddNote": MessageLookupByLibrary.simpleMessage(

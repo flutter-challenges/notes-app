@@ -332,6 +332,7 @@ class CustomDialog {
     required BuildContext context,
     required VoidCallback onDeleteTap,
     required VoidCallback onMoveToPrivateTap,
+    required String title,
   }) {
     showGeneralDialog(
       context: context,
@@ -347,7 +348,6 @@ class CustomDialog {
       },
       pageBuilder: (context, animation, secondaryAnimation) {
         final Color? iconColor = Theme.of(context).appBarTheme.iconTheme?.color;
-        final Color? textColor = Theme.of(context).textTheme.bodyLarge?.color;
 
         return Center(
           child: Material(
@@ -387,7 +387,7 @@ class CustomDialog {
                   _buildSelectionMenuItem(
                     context: context,
                     icon: Icons.lock_outline_rounded,
-                    title: 'Move to Private',
+                    title: title,
                     iconColor: iconColor,
                     textColor: Theme.of(context).textTheme.titleLarge?.color,
                     onTap: () {

@@ -47,6 +47,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "an error occured while saving note...",
     ),
     "lastEdit": m0,
+    "moveToPrivate": MessageLookupByLibrary.simpleMessage("Move to Private"),
+    "moveToPublic": MessageLookupByLibrary.simpleMessage("Move to Public"),
     "myNotes": MessageLookupByLibrary.simpleMessage("My Notes"),
     "newNote": MessageLookupByLibrary.simpleMessage("New Note"),
     "noNotesYet": MessageLookupByLibrary.simpleMessage(
@@ -56,6 +58,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Write your note details here...",
     ),
     "noteTitleHint": MessageLookupByLibrary.simpleMessage("Note Title..."),
+    "privateNotes": MessageLookupByLibrary.simpleMessage("Private Notes"),
     "save": MessageLookupByLibrary.simpleMessage("Save"),
     "selectLanguage": MessageLookupByLibrary.simpleMessage("Select Language"),
     "successAddNote": MessageLookupByLibrary.simpleMessage(

@@ -47,6 +47,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "an error occured while saving note...",
     ),
     "lastEdit": m0,
+    "moveToPublic": MessageLookupByLibrary.simpleMessage(
+      "Passer en mode public",
+    ),
     "myNotes": MessageLookupByLibrary.simpleMessage("Mes Notes"),
     "newNote": MessageLookupByLibrary.simpleMessage("Nouvelle Note"),
     "noNotesYet": MessageLookupByLibrary.simpleMessage(

@@ -208,6 +208,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Move to Private`
+  String get moveToPrivate {
+    return Intl.message(
+      'Move to Private',
+      name: 'moveToPrivate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Move to Public`
+  String get moveToPublic {
+    return Intl.message(
+      'Move to Public',
+      name: 'moveToPublic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Private Notes`
+  String get privateNotes {
+    return Intl.message(
+      'Private Notes',
+      name: 'privateNotes',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

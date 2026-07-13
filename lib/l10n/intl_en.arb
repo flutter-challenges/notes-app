@@ -17,5 +17,8 @@
   "deleteNote": "Delete Note",
   "deleteNoteConfirmation": "Are you sure you want to delete this note?",
   "delete": "Delete",
-  "NoteDeletedSuccessfully": "Note deleted successfully"
+  "NoteDeletedSuccessfully": "Note deleted successfully",
+  "moveToPrivate": "Move to Private",
+  "moveToPublic": "Move to Public",
+  "privateNotes": "Private Notes"
 }

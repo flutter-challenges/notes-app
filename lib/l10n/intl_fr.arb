@@ -17,5 +17,8 @@
   "deleteNote": "Supprimer la note",
   "deleteNoteConfirmation": "Êtes-vous sûr de vouloir supprimer cette note?",
   "delete": "Supprimer",
-  "NoteDeletedSuccessfully": "Note supprimée avec succès! 🎉"
+  "NoteDeletedSuccessfully": "Note supprimée avec succès! 🎉",
+  "Move to Private": "Passer en mode privé",
+  "moveToPublic": "Passer en mode public",
+  "Private Notes": "Notes privées"
 }

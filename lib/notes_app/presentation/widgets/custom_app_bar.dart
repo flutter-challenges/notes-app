@@ -47,7 +47,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
           title: Text(
             isSelectionMode
                 ? "${selectionState.selectedNoteKeys.length}"
-                : (isPrivateMode ? "Private Notes" : S.of(context).myNotes),
+                : (isPrivateMode
+                      ? S.of(context).privateNotes
+                      : S.of(context).myNotes),
             style: TextStyle(
               fontWeight: FontWeight.w800,
               fontSize: 26,
@@ -66,6 +68,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
                     ),
                     onPressed: () {
                       CustomDialog.showSelectionMenuOptions(
+                        title: isPrivateMode
+                            ? S.of(context).moveToPublic
+                            : S.of(context).moveToPrivate,
                         context: context,
                         onDeleteTap: () {
                           final selectedKeys = selectionState.selectedNoteKeys;
